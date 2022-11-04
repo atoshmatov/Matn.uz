@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_color"
+    tools:context=".presentation.screen.notConnection.NetworkErrorScreen">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/appLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/appLogo"
+        app:layout_constraintTop_toTopOf="@+id/appLogo">
+
+        <TextView
+            android:id="@+id/appNameTx"
+            android:layout_width="match_parent"
+            android:layout_height="31dp"
+            android:fontFamily="@font/rubik_bold"
+            android:gravity="center"
+            android:text="@string/sp_app_tx"
+            android:textColor="@color/white"
+            android:textFontWeight="700"
+            android:textSize="24sp"
+            tools:ignore="UnusedAttribute" />
+
+        <TextView
+            android:id="@+id/appDpTx"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:fontFamily="@font/rubik_light"
+            android:gravity="center"
+            android:letterSpacing="0.03"
+            android:text="@string/sp_description_tx"
+            android:textColor="@color/white"
+            android:textFontWeight="500"
+            android:textSize="11sp"
+            tools:ignore="UnusedAttribute" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:elevation="10dp"
+        android:src="@drawable/ic_internet_error"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/notInternetTx1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/notInternetTx1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/rubik"
+        android:gravity="center"
+        android:text="@string/no_internet_tx1"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/notInternetTx2"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatImageView2"
+        app:layout_constraintStart_toStartOf="@+id/appCompatImageView2"
+        app:layout_constraintTop_toBottomOf="@id/appCompatImageView2" />
+
+    <TextView
+        android:id="@+id/notInternetTx2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/rubik"
+        android:gravity="center"
+        android:text="@string/no_internet_tx2"
+        android:textColor="@color/no_internet_tx2_color"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/notInternetTx1"
+        app:layout_constraintStart_toStartOf="@+id/notInternetTx1"
+        app:layout_constraintTop_toBottomOf="@+id/notInternetTx1" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/spStartBt"
+        android:layout_width="194dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/sp_btn_color_1"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="@string/refresh_btn_tx"
+            android:textColor="@color/sp_btn_tx_color"
+            android:textSize="18sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

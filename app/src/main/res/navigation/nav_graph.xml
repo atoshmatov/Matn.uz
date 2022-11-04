@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreen">
+
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="uz.uicgroup.presentation.screen.splash.SplashScreen"
+        android:label="scren_splaash"
+        tools:layout="@layout/screen_splaash">
+        <action
+            android:id="@+id/action_splashScreen_to_editorScreen"
+            app:destination="@id/editorScreen"
+            app:popUpTo="@id/splashScreen"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/editorScreen"
+        android:name="uz.uicgroup.presentation.screen.edit.EditorScreen"
+        android:label="screen_editor"
+        tools:layout="@layout/screen_editor" />
+    <fragment
+        android:id="@+id/networkErrorScreen"
+        android:name="uz.uicgroup.presentation.screen.notConnection.NetworkErrorScreen"
+        android:label="screen_network_error"
+        tools:layout="@layout/screen_network_error" />
+</navigation>

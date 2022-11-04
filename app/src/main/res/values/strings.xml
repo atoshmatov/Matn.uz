@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Matn.uz</string>
+
+    //Splash text
+    <string name="sp_tittle_tx">Bizning tilimiz muqaddas</string>
+    <string name="sp_app_tx">MATN.UZ</string>
+    <string name="sp_description_tx">Bexato Qulay Bepul</string>
+    <string name="sp_tittle_tx2">O‘zbek tilida bexato \n yozamiz</string>
+    <string name="sp_btn_tx">Boshlash</string>
+
+    //editor Screen text
+
+
+    //notConnection screen text
+    <string name="no_internet_tx1">Obbo! Tarmoqga ulanishda \n nosozlik yuzaga keldi!</string>
+    <string name="no_internet_tx2">Mobil internet yoki Wi-Fi tarmog’iga \n bog’lanishni tekshirib ko’ring</string>
+    <string name="refresh_btn_tx">Qayta urinish</string>
+
+</resources>
