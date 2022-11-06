@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.SplashTheme" parent="Theme.SplashTheme" tools:ignore="ResourceCycle">
+        <item name="android:windowSplashScreenBackground" tools:ignore="NewApi">@color/main_color
+        </item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:ignore="NewApi">
+            @drawable/ic_logo
+        </item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:ignore="NewApi">200</item>
+    </style>
+
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/rubik</item>
+        <item name="android:textSize">14sp</item>
+<!--        <item name="android:textColor">@color/tab_item_tx_color</item>-->
+    </style>
+</resources>

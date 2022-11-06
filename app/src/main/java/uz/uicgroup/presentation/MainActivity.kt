@@ -13,7 +13,7 @@ import uz.uicgroup.utils.Open
 class MainActivity : AppCompatActivity(R.layout.activity_main),
     ConnectivityReceiver.ConnectivityReceiverListener {
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
-        Open.notInternet.value = isConnected
+        Open.notInternet = isConnected
     }
 
     private fun registerConnectivityReceiver() {

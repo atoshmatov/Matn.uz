@@ -2,9 +2,12 @@ package uz.uicgroup.presentation.viewModel
 
 import kotlinx.coroutines.flow.Flow
 
-interface SplashViewModel {
+interface MainViewModel {
     val showLoadingFlow: Flow<String>
     val notConnection: Flow<Boolean>
     val openNextScreenFLow: Flow<Unit>
+    val openNoErrorScreenFLow: Flow<Unit>
     val messageFlow: Flow<String>
+
+    fun openEditorScreen()
 }

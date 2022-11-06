@@ -119,4 +119,7 @@ dependencies {
     // list
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 
+    // Use: def instead of val if you are not using Kotlin Gradle(.kts)
+    implementation("androidx.core:core-splashscreen:1.0.0")
+
 }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Matn.uz</string>
 
-    //Splash text
+    //Main text
     <string name="sp_tittle_tx">Bizning tilimiz muqaddas</string>
     <string name="sp_app_tx">MATN.UZ</string>
     <string name="sp_description_tx">Bexato Qulay Bepul</string>
@@ -15,5 +15,9 @@
     <string name="no_internet_tx1">Obbo! Tarmoqga ulanishda \n nosozlik yuzaga keldi!</string>
     <string name="no_internet_tx2">Mobil internet yoki Wi-Fi tarmog’iga \n bog’lanishni tekshirib ko’ring</string>
     <string name="refresh_btn_tx">Qayta urinish</string>
+    <string name="editor_tab_tx">Tahrir</string>
+    <string name="dictionary_tab_tx">Lug‘at</string>
+    <string name="lotin_tx">Lotincha</string>
+    <string name="krill_tx">Кириллча</string>
 
 </resources>

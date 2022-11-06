@@ -3,19 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreen">
+    app:startDestination="@id/mainScreen">
 
-    <fragment
-        android:id="@+id/splashScreen"
-        android:name="uz.uicgroup.presentation.screen.splash.SplashScreen"
-        android:label="scren_splaash"
-        tools:layout="@layout/screen_splaash">
-        <action
-            android:id="@+id/action_splashScreen_to_editorScreen"
-            app:destination="@id/editorScreen"
-            app:popUpTo="@id/splashScreen"
-            app:popUpToInclusive="true" />
-    </fragment>
     <fragment
         android:id="@+id/editorScreen"
         android:name="uz.uicgroup.presentation.screen.edit.EditorScreen"
@@ -25,5 +14,33 @@
         android:id="@+id/networkErrorScreen"
         android:name="uz.uicgroup.presentation.screen.notConnection.NetworkErrorScreen"
         android:label="screen_network_error"
-        tools:layout="@layout/screen_network_error" />
+        tools:layout="@layout/screen_network_error" >
+        <action
+            android:id="@+id/action_networkErrorScreen_to_editorScreen"
+            app:destination="@id/editorScreen"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreen"
+        android:name="uz.uicgroup.presentation.screen.main.MainScreen"
+        android:label="screen_main"
+        tools:layout="@layout/screen_main" >
+        <action
+            android:id="@+id/action_mainScreen_to_networkErrorScreen"
+            app:destination="@id/networkErrorScreen"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popUpTo="@id/mainScreen"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainScreen_to_editorScreen"
+            app:destination="@id/editorScreen"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popUpTo="@id/mainScreen"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

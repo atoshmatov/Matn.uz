@@ -13,17 +13,26 @@
     // Main color
     <color name="main_color">#364459</color>
 
-    //Splash color
+    //Main2 color
     <color name="splash_bg_color">#D9364459</color>
     <color name="sp_tx_color">#CCFFFFFF</color>
     <color name="sp_btn_color_1">#F9D396</color>
     <color name="sp_btn_color_2">#F4CA85</color>
-    <color name="sp_btn_tx_color">#364459</color>
+    <color name="sp_btn_tx_color">@color/main_color</color>
 
 
     //editor Screen color
     <color name="editor_btn_check_color">#26E188</color>
-    <color name="tab_item_color">#FFFFFF</color>
+    <color name="tab_item_color">@color/white</color>
+    <color name="tab_item_tx_color">@color/main_color</color>
+    <color name="line_color">#C4C4C4</color>
+    <color name="lotin_tx_color">@color/black</color>
+    <color name="krill_tx_color">#B5B5B5</color>
+    <color name="krill_btn_bg_color">#F1F1F1</color>
+    <color name="lotin_btn_bg_color">@color/white</color>
+    <color name="bg_color">@color/white</color>
+    <color name="text_count_bg_color_1">#F1F1F1</color>
+    <color name="text_count_bg_color_2">#F9F9F9</color>
 
     //no internet screen
     <color name="no_internet_tx2_color">#D7D9DD</color>
