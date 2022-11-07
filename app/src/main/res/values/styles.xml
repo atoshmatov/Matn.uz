@@ -13,6 +13,5 @@
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/rubik</item>
         <item name="android:textSize">14sp</item>
-<!--        <item name="android:textColor">@color/tab_item_tx_color</item>-->
     </style>
 </resources>

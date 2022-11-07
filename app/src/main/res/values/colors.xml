@@ -23,6 +23,7 @@
 
     //editor Screen color
     <color name="editor_btn_check_color">#26E188</color>
+    <color name="editor_btn_check_tx_color">#fff</color>
     <color name="tab_item_color">@color/white</color>
     <color name="tab_item_tx_color">@color/main_color</color>
     <color name="line_color">#C4C4C4</color>
@@ -33,6 +34,7 @@
     <color name="bg_color">@color/white</color>
     <color name="text_count_bg_color_1">#F1F1F1</color>
     <color name="text_count_bg_color_2">#F9F9F9</color>
+    <color name="input_tx_color">#364459</color>
 
     //no internet screen
     <color name="no_internet_tx2_color">#D7D9DD</color>

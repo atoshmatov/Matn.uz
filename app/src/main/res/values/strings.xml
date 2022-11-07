@@ -19,5 +19,7 @@
     <string name="dictionary_tab_tx">Lug‘at</string>
     <string name="lotin_tx">Lotincha</string>
     <string name="krill_tx">Кириллча</string>
+    <string name="check_tx">Tekshirish</string>
+    <string name="input_text">Matnni kiriting…</string>
 
 </resources>

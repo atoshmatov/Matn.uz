@@ -14,7 +14,7 @@ import uz.uicgroup.presentation.viewModel.EditorViewModel
 import uz.uicgroup.presentation.viewModel.impl.EditorViewModelImpl
 
 @AndroidEntryPoint
-class EditorScreen : Fragment(R.layout.screen_editor) {
+class EditScreen : Fragment(R.layout.screen_editor) {
     private val viewBinding by viewBinding(ScreenEditorBinding::bind)
     private val viewModel: EditorViewModel by viewModels<EditorViewModelImpl>()
 
