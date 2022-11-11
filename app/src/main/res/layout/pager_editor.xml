@@ -6,39 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".presentation.screen.edit.pager.EditorPage">
 
-    <ScrollView
+    <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="4dp"
         app:layout_constraintBottom_toTopOf="@+id/editorBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent">-->
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etMessageBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="16dp"
-            android:autoLink="all"
-            android:background="@null"
-            android:fontFamily="@font/rubik"
-            android:gravity="top|left"
-            android:hint="@string/input_text"
-            android:inputType="textMultiLine|textCapSentences"
-            android:lines="5000"
-            android:maxLines="10"
-            android:minLines="1"
-            android:textColor="@color/input_tx_color"
-            android:textSize="14sp"
-            tools:ignore="ObsoleteLayoutParam,RtlHardcoded" />
-    </ScrollView>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etMessageBox"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@null"
+        android:paddingVertical="16dp"
+        android:clipToPadding="false"
+        android:cursorVisible="true"
+        android:fontFamily="@font/rubik"
+        android:gravity="top"
+        android:hint="@string/input_text"
+        android:maxLength="1000"
+        android:minHeight="48dp"
+        android:minLines="1"
+        android:textColor="@color/input_tx_color"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/editorBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editorBtn"
         android:layout_width="match_parent"
         android:layout_height="132dp"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -53,7 +58,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView2"
+            android:id="@+id/textCountItem"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginVertical="12dp"
@@ -79,16 +84,18 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/currentCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/roboto"
-                        android:text="986"
+                        android:text="@string/zero"
                         android:textSize="12sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/maxCount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -100,8 +107,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/roboto"
-                        android:text="5000"
-                        android:textSize="12sp" />
+                        android:text="1000"
+                        android:textSize="12sp"
+                        tools:ignore="HardcodedText" />
 
                 </LinearLayout>
 
@@ -121,9 +129,9 @@
             android:foreground="?android:selectableItemBackgroundBorderless"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/materialCardView2"
-            app:layout_constraintStart_toEndOf="@+id/materialCardView2"
-            app:layout_constraintTop_toTopOf="@+id/materialCardView2">
+            app:layout_constraintBottom_toBottomOf="@+id/textCountItem"
+            app:layout_constraintStart_toEndOf="@+id/textCountItem"
+            app:layout_constraintTop_toTopOf="@+id/textCountItem">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
@@ -133,7 +141,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView3"
+            android:id="@+id/copyText"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="16dp"
@@ -143,9 +151,9 @@
             android:foreground="?android:selectableItemBackgroundBorderless"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/materialCardView4"
-            app:layout_constraintEnd_toStartOf="@+id/materialCardView4"
-            app:layout_constraintTop_toTopOf="@+id/materialCardView4">
+            app:layout_constraintBottom_toBottomOf="@+id/checkButton"
+            app:layout_constraintEnd_toStartOf="@+id/checkButton"
+            app:layout_constraintTop_toTopOf="@+id/checkButton">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
@@ -155,7 +163,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView4"
+            android:id="@+id/checkButton"
             android:layout_width="99dp"
             android:layout_height="48dp"
             android:layout_marginEnd="16dp"
@@ -202,7 +210,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/btn_1"
+                    android:id="@+id/btnLatin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -219,7 +227,7 @@
                     tools:ignore="UnusedAttribute" />
 
                 <TextView
-                    android:id="@+id/btn_2"
+                    android:id="@+id/btnCyrill"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"

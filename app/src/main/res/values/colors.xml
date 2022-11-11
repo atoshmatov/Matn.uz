@@ -12,6 +12,9 @@
 
     // Main color
     <color name="main_color">#364459</color>
+    <color name="text_color">@color/main_color</color>
+    <color name="text_color_2">#8E8E8E</color>
+
 
     //Main2 color
     <color name="splash_bg_color">#D9364459</color>
@@ -36,6 +39,23 @@
     <color name="text_count_bg_color_2">#F9F9F9</color>
     <color name="input_tx_color">#364459</color>
 
+    //tab item text color
+    <color name="tab_item_text_color_change_no_active">#979797</color>
+    <color name="tab_item_text_color_change_active">@color/main_color</color>
+
+    //dictionary screen color
+    <color name="empty_list_color">#848489</color>
+
     //no internet screen
     <color name="no_internet_tx2_color">#D7D9DD</color>
+
+    //info screen color
+    <color name="mode_bg_color">#F1F1F1</color>
+
+    //tool top color
+    <color name="tool_tip_color">#323232</color>
+    <color name="tool_tip_text_color">@color/white</color>
+    <color name="tool_tip_danger_text_color">#FE8484</color>
+    <color name="tool_tip_bg_danger_color">#FFBFBA</color>
+
 </resources>

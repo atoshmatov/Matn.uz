@@ -1,4 +1,4 @@
-package uz.uicgroup.data.remote
+package uz.uicgroup.data.remote.api
 
 import retrofit2.Response
 import retrofit2.http.Body
@@ -10,14 +10,11 @@ interface TransApi {
 
     @POST("/api/v1/cyrillic/")
     suspend fun editCyrillicText(
-        @Body text: LatinRequest,
-        @Header("Authorization") token: String
+        @Body text: LatinRequest
     ): Response<String>
 
     @POST("/api/v1/latin/")
     suspend fun editLatinText(
-        @Body text: LatinRequest,
-        @Header("Authorization") token: String
+        @Body text: LatinRequest
     ): Response<String>
-
 }

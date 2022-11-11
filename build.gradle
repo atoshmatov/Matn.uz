@@ -6,6 +6,7 @@ buildscript {
         mavenCentral()
         maven {
             url "https://jitpack.io"}
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     }
     dependencies {
         def nav_version = "2.5.0"

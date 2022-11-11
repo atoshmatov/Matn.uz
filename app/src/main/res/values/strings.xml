@@ -9,6 +9,7 @@
     <string name="sp_btn_tx">Boshlash</string>
 
     //editor Screen text
+    <string name="text_empty">text maydoni to‘ldirilishi shart.</string>
 
 
     //notConnection screen text
@@ -21,5 +22,23 @@
     <string name="krill_tx">Кириллча</string>
     <string name="check_tx">Tekshirish</string>
     <string name="input_text">Matnni kiriting…</string>
+    <string name="empty_text">Izlayotgan so‘zingizni \n yuqoridagi maydonchaga kiriting</string>
+    <string name="conditions_text">Foydalanish shartlari</string>
+    <string name="app_info_text">Loyiha haqida</string>
+    <string name="privacy_police_text">Foydalanilgan ma’lumotlar siyosati</string>
+    <string name="light_color">Och rang</string>
+    <string name="dark_color">To’q rang</string>
+    <string name="social_media_tittle_text">Loyihanining ijtimoiy tarmoqlardagi sahifalariga \n a’zo bo‘lishni unutmang:</string>
+    <string name="tittle_2">Loyiha yuzasidan taklifingiz bo‘lsa quyidagi havola \n orqali murojaat qilishingiz mumkin:</string>
+    <string name="www_matn_uz">www.matn.uz</string>
+    <string name="footer_text">MATN.UZ © 2020-yil. “Project Managers” MCHJ</string>
+
+    //
+    <string name="clear_text_info_1">Matn hali bo\'sh</string>
+    <string name="clear_text_info_2">Tozalandi!</string>
+    <string name="copy_text_info_1">Nusxalandi!</string>
+    <string name="count_text_info">Eng ko‘pi bilan \n 1000 ta belgi!</string>
+    <string name="max_count">1000</string>
+    <string name="zero">0</string>
 
 </resources>

@@ -5,7 +5,7 @@ import uz.uicgroup.data.remote.request.LatinRequest
 
 interface TransRepository {
     //to turn to Latin
-    suspend fun transLatin(text: LatinRequest): Response<String>
+    suspend fun transLatin(text: String): Response<String>
     //to turn to Cyril
-    suspend fun transCyrillic(text: LatinRequest): Response<String>
+    suspend fun transCyrillic(text: String): Response<String>
 }

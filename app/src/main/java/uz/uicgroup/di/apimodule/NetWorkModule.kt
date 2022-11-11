@@ -12,14 +12,15 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.uicgroup.BuildConfig.BASE_URL
-import uz.uicgroup.data.remote.SpellingApi
-import uz.uicgroup.data.remote.TransApi
+import uz.uicgroup.BuildConfig.Bearer
+import uz.uicgroup.data.remote.api.SpellingApi
+import uz.uicgroup.data.remote.api.TransApi
 import javax.inject.Singleton
 
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetWorkModule {
+object NetWorkModule {
 
     @[Provides Singleton]
     fun okHTTPClientObject(
@@ -27,6 +28,13 @@ class NetWorkModule {
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(PlutoInterceptor())
+            .addInterceptor {
+                val request = it.request()
+                    .newBuilder()
+                    .addHeader("Authorization", "Bearer $Bearer")
+                    .build()
+                it.proceed(request)
+            }
             .build()
 
     @[Provides Singleton]
@@ -36,14 +44,6 @@ class NetWorkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
-
-    @[Provides Singleton]
-    fun provideTransApi(retrofit: Retrofit): TransApi =
-        retrofit.create(TransApi::class.java)
-
-    @[Provides Singleton]
-    fun provideSpellingApi(retrofit: Retrofit): SpellingApi =
-        retrofit.create(SpellingApi::class.java)
 
     @[Provides Singleton]
     fun getGson(): Gson = Gson()

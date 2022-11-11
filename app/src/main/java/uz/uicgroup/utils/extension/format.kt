@@ -1,14 +1,17 @@
 package uz.uicgroup.utils.extension
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import uz.uicgroup.R
 
 fun usingJavaStringFormat(input: Double, scale: Int) = String.format("%.${scale}f", input)
 
@@ -18,17 +21,13 @@ fun View.onClick(action: (View) -> Unit) {
     }
 }
 
+@SuppressLint("ResourceAsColor")
 fun String.paintResult(query: String): Spannable {
-    var start = this.indexOf(query)
-    var end = start + query.length
-    if (this.equals(query, true)) {
-        start = 0
-        end = this.length
-    }
-    val spannable = SpannableString(this)
+    val spannable: Spannable = SpannableString(query)
     spannable.setSpan(
-        ForegroundColorSpan(Color.RED),
-        start, end,
+        BackgroundColorSpan(R.color.tool_tip_danger_text_color),
+        0,
+        query.length,
         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
     )
     return spannable

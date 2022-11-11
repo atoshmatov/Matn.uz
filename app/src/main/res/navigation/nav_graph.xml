@@ -9,7 +9,11 @@
         android:id="@+id/editorScreen"
         android:name="uz.uicgroup.presentation.screen.edit.EditScreen"
         android:label="screen_editor"
-        tools:layout="@layout/screen_editor" />
+        tools:layout="@layout/screen_editor" >
+        <action
+            android:id="@+id/action_editorScreen_to_aboutScreen"
+            app:destination="@id/aboutScreen" />
+    </fragment>
     <fragment
         android:id="@+id/networkErrorScreen"
         android:name="uz.uicgroup.presentation.screen.notConnection.NetworkErrorScreen"
@@ -43,4 +47,9 @@
             app:popUpTo="@id/mainScreen"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutScreen"
+        android:name="uz.uicgroup.presentation.screen.about.AboutScreen"
+        android:label="screen_about"
+        tools:layout="@layout/screen_about" />
 </navigation>

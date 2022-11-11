@@ -1,18 +1,29 @@
 package uz.uicgroup.presentation.viewModel
 
+import android.widget.EditText
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
-import uz.uicgroup.data.remote.request.LatinRequest
+import uz.uicgroup.data.common.Resource
+import uz.uicgroup.domain.model.CorrectData
+import uz.uicgroup.domain.model.SuggestionsData
 
 interface EditorViewModel {
-    val _text: Flow<String>
-    val showLoadingFlow: Flow<Boolean>
+    val words: Flow<Resource<String>>
+    val showLoadingFlow: Flow<Resource<Boolean>>
+    val checkLoading: Flow<Resource<Boolean>>
+    val corrects: Flow<Resource<CorrectData>>
+    val suggestions:Flow<Resource<SuggestionsData>>
     val noConnectionFlow: Flow<Boolean>
-    val showMassageFlow: Flow<String>
-    val errorFlow: Flow<String>
-    val buttonLive:LiveData<Boolean>
+    val showMassageFlow: Flow<Resource<String>>
+    val errorFlow: Flow<Resource<String>>
+    val buttonLive: LiveData<Resource<Boolean>>
 
     //method
-    fun getLatin(text: LatinRequest)
-    fun getCyrillic(text: LatinRequest)
+    fun getLatin(text: String)
+    fun getCyrillic(text: String)
+    fun savePosition(box: EditText)
+
+    //spelling
+    fun getCorrect(correctList: List<String>)
+    fun getSuggestions(suggestionsList: List<String>)
 }

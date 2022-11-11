@@ -123,4 +123,7 @@ dependencies {
     // Use: def instead of val if you are not using Kotlin Gradle(.kts)
     implementation("androidx.core:core-splashscreen:1.0.0")
 
+    //Balloon
+    implementation "com.github.skydoves:balloon:1.4.7"
+
 }

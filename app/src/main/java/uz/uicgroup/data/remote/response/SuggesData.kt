@@ -1,4 +1,4 @@
-package uz.uicgroup.data.remote.apiModel
+package uz.uicgroup.data.remote.response
 
 data class SuggesData(
     val word: String,

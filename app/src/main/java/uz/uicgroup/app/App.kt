@@ -4,6 +4,7 @@ import android.app.Application
 import com.mocklets.pluto.Pluto
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
+import uz.uicgroup.BuildConfig
 
 @HiltAndroidApp
 class App : Application() {
@@ -16,6 +17,6 @@ class App : Application() {
         super.onCreate()
         instance = this
         Pluto.initialize(this)
-//        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
     }
 }
