@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.uicgroup.R
 import uz.uicgroup.databinding.ScreenMainBinding
-import uz.uicgroup.presentation.viewModel.MainViewModel
-import uz.uicgroup.presentation.viewModel.impl.MainViewModelImpl
+import uz.uicgroup.presentation.screen.main.viewmodel.MainViewModel
+import uz.uicgroup.presentation.screen.main.viewmodel.impl.MainViewModelImpl
 
 
 @AndroidEntryPoint

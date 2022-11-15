@@ -1,12 +1,14 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:tools="http://schemas.android.com/tools"
     android:width="44dp"
     android:height="44dp"
     android:viewportWidth="44"
     android:viewportHeight="44">
   <path
       android:pathData="M12,0L32,0A12,12 0,0 1,44 12L44,32A12,12 0,0 1,32 44L12,44A12,12 0,0 1,0 32L0,12A12,12 0,0 1,12 0z"
-      android:fillColor="#ffffff"/>
+      android:fillColor="@color/button_color_2"
+      tools:ignore="VectorRaster" />
   <path
       android:pathData="M28,6H16C10.478,6 6,10.478 6,16V28C6,33.522 10.478,38 16,38H28C33.522,38 38,33.522 38,28V16C38,10.478 33.522,6 28,6ZM35,28C35,31.86 31.86,35 28,35H16C12.14,35 9,31.86 9,28V16C9,12.14 12.14,9 16,9H28C31.86,9 35,12.14 35,16V28Z">
     <aapt:attr name="android:fillColor">

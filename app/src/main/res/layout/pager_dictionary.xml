@@ -10,6 +10,7 @@
         android:id="@+id/linear"
         android:layout_width="0dp"
         android:layout_height="80dp"
+        android:background="@color/input_bg_color_2"
         android:elevation="0dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -43,10 +44,10 @@
         app:layout_constraintTop_toBottomOf="@+id/linear" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:visibility="gone"
         android:id="@+id/listDic"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

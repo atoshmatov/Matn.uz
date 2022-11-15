@@ -1,11 +1,11 @@
-package uz.uicgroup.presentation.viewModel.impl
+package uz.uicgroup.presentation.screen.main.viewmodel.impl
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import uz.uicgroup.presentation.viewModel.MainViewModel
+import uz.uicgroup.presentation.screen.main.viewmodel.MainViewModel
 import uz.uicgroup.utils.Open
 import uz.uicgroup.utils.extension.eventFlow
 import uz.uicgroup.utils.extension.eventValueFlow

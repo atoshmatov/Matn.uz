@@ -12,17 +12,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.uicgroup.R
 import uz.uicgroup.databinding.ScreenEditorBinding
 import uz.uicgroup.presentation.screen.edit.adapter.PagerAdapter
-import uz.uicgroup.presentation.viewModel.EditorViewModel
-import uz.uicgroup.presentation.viewModel.impl.EditorViewModelImpl
+import uz.uicgroup.presentation.screen.edit.pager.viewmodel.EditorViewModel
+import uz.uicgroup.presentation.screen.edit.pager.viewmodel.impl.EditorViewModelImpl
+import uz.uicgroup.utils.extension.hideKeyboard
 
 @AndroidEntryPoint
 class EditScreen : Fragment(R.layout.screen_editor) {
     private val viewBinding by viewBinding(ScreenEditorBinding::bind)
     private val viewModel: EditorViewModel by viewModels<EditorViewModelImpl>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(viewBinding) {
@@ -41,6 +38,7 @@ class EditScreen : Fragment(R.layout.screen_editor) {
         }.attach()
 
         appInfo.setOnClickListener {
+            hideKeyboard()
             findNavController().navigate(R.id.action_editorScreen_to_aboutScreen)
         }
     }

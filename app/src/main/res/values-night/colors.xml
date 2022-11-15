@@ -14,6 +14,7 @@
     <color name="main_color">#364459</color>
     <color name="text_color">@color/white</color>
     <color name="text_color_2">#959CA7</color>
+    <color name="text_color_3">@color/white</color>
 
     //Main2 color
     <color name="splash_bg_color">#D9364459</color>
@@ -37,6 +38,9 @@
     <color name="text_count_bg_color_1">#212C3F</color>
     <color name="text_count_bg_color_2">#2C394E</color>
     <color name="input_tx_color">#FFFFFF</color>
+    <color name="input_bg_color">#435269</color>
+    <color name="input_bg_color_2">@color/main_color</color>
+
 
     //tab item text color
     <color name="tab_item_text_color_change_no_active">#CBCBCB</color>
@@ -52,10 +56,20 @@
 
     //info screen color
     <color name="mode_bg_color">#435269</color>
+    <color name="icon_color">@color/white</color>
+    <color name="about_text_color">#D7DADE</color>
+    <color name="about_bg_color_2">#435269</color>
+    <color name="button_color_2">#364459</color>
+    <color name="button_text_color">#FFFFFF</color>
+
 
     //tool top color
     <color name="tool_tip_color">#C3A472</color>
     <color name="tool_tip_text_color">#212C3F</color>
     <color name="tool_tip_danger_text_color">#FE8484</color>
     <color name="tool_tip_bg_danger_color">#FFBFBA</color>
+
+    //span bg color
+    <color name="span_bg_color">#4A576A</color>
+
 </resources>

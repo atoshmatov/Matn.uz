@@ -1,9 +1,9 @@
-package uz.uicgroup.presentation.viewModel.impl
+package uz.uicgroup.presentation.screen.edit.viewModel.impl
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import uz.uicgroup.domain.use_case.TransUseCase
-import uz.uicgroup.presentation.viewModel.EditViewModel
+import uz.uicgroup.presentation.screen.edit.viewModel.EditViewModel
 import javax.inject.Inject
 
 @HiltViewModel

@@ -4,16 +4,18 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import uz.uicgroup.data.remote.response.DictionaryResponse
-import uz.uicgroup.data.remote.response.WordResponse
+import uz.uicgroup.data.remote.response.DictionaryDto
+import uz.uicgroup.data.remote.response.WordDto
 
 interface DictionaryApi {
 
     @GET("/api/v1/dictionary")
-    fun getSearchText(@Query("search") search: String):
-            Response<List<DictionaryResponse>>
+    suspend fun getSearchText(
+        @Query("search") search: String
+    ): Response<List<DictionaryDto>>
 
     @GET("/api/v1/words")
-    fun getSearchWord(@Path("id") id: Int):
-            Response<List<WordResponse>>
+    suspend fun getSearchWord(
+        @Path("id") id: Int
+    ): Response<List<WordDto>>
 }

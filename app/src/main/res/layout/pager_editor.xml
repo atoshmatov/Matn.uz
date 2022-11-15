@@ -6,25 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".presentation.screen.edit.pager.EditorPage">
 
-    <!--<ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:padding="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/editorBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">-->
-
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etMessageBox"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_margin="12dp"
         android:background="@null"
-        android:paddingVertical="16dp"
-        android:clipToPadding="false"
-        android:cursorVisible="true"
         android:fontFamily="@font/rubik"
         android:gravity="top"
         android:hint="@string/input_text"
@@ -164,7 +151,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/checkButton"
-            android:layout_width="99dp"
+            android:layout_width="110dp"
             android:layout_height="48dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/editor_btn_check_color"
@@ -216,10 +203,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@color/lotin_btn_bg_color"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:fontFamily="@font/rubik"
-                    android:foreground="?android:selectableItemBackground"
                     android:gravity="center"
                     android:text="@string/lotin_tx"
                     android:textColor="@color/lotin_tx_color"
@@ -233,21 +217,18 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@color/krill_btn_bg_color"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:fontFamily="@font/rubik"
-                    android:foreground="?android:selectableItemBackground"
                     android:gravity="center"
                     android:text="@string/krill_tx"
-                    android:textColor="#546E7A"
+                    android:textColor="@color/krill_tx_color"
                     android:textSize="16sp"
-                    tools:ignore="UnusedAttribute"
-                    tools:textColor="@color/krill_tx_color" />
+                    tools:ignore="UnusedAttribute" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/stateButton"
             android:layout_width="44dp"
             android:layout_height="32dp"
             android:layout_marginEnd="10dp"

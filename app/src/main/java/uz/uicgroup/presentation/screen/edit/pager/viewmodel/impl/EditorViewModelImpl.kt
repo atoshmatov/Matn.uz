@@ -1,4 +1,4 @@
-package uz.uicgroup.presentation.viewModel.impl
+package uz.uicgroup.presentation.screen.edit.pager.viewmodel.impl
 
 import android.text.Editable
 import android.text.Selection
@@ -7,16 +7,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import uz.uicgroup.data.common.Resource
+import uz.uicgroup.data.local.SharedPref
 import uz.uicgroup.domain.model.CorrectData
 import uz.uicgroup.domain.model.SuggestionsData
 import uz.uicgroup.domain.use_case.SpellingUseCase
 import uz.uicgroup.domain.use_case.TransUseCase
-import uz.uicgroup.presentation.viewModel.EditorViewModel
+import uz.uicgroup.presentation.screen.edit.pager.viewmodel.EditorViewModel
 import uz.uicgroup.utils.extension.eventValueFlow
 import uz.uicgroup.utils.internetConnection.isConnected
 import javax.inject.Inject
@@ -24,17 +23,19 @@ import javax.inject.Inject
 @HiltViewModel
 class EditorViewModelImpl @Inject constructor(
     private val transUseCase: TransUseCase,
-    private val spellingUseCase: SpellingUseCase
+    private val spellingUseCase: SpellingUseCase,
+    private val sharedPref: SharedPref
 ) : ViewModel(), EditorViewModel {
     override val words = eventValueFlow<Resource<String>>()
     override val showLoadingFlow = eventValueFlow<Resource<Boolean>>()
+    override val showCorrectMessageFlow = eventValueFlow<Resource<String>>()
     override val checkLoading = eventValueFlow<Resource<Boolean>>()
     override val corrects = eventValueFlow<Resource<CorrectData>>()
     override val suggestions = eventValueFlow<Resource<SuggestionsData>>()
     override val noConnectionFlow = eventValueFlow<Boolean>()
     override val showMassageFlow = eventValueFlow<Resource<String>>()
     override val errorFlow = eventValueFlow<Resource<String>>()
-    override val buttonLive = MutableLiveData<Resource<Boolean>>()
+    override val buttonLive = MutableLiveData<Boolean>()
 
     override fun getLatin(text: String) {
         viewModelScope.launch {
@@ -74,15 +75,9 @@ class EditorViewModelImpl @Inject constructor(
         }
     }
 
-    override fun savePosition(box: EditText) {
-        val position: Int = box.length()
-        val etext: Editable? = box.text
-        Selection.setSelection(etext, position)
-    }
-
     override fun getCorrect(correctList: List<String>) {
         viewModelScope.launch {
-            if (correctList.isNotEmpty()) {
+            if (correctList[0].isNotEmpty()) {
                 spellingUseCase.getCorrect(correctList).onStart {
                     checkLoading.emit(Resource.Loading(true))
                 }.onEach {
@@ -94,7 +89,7 @@ class EditorViewModelImpl @Inject constructor(
                     corrects.emit(Resource.Success(it.data!!))
                 }.launchIn(viewModelScope)
             } else {
-                showMassageFlow.emit(Resource.Error("text maydoni to‘ldirilishi shart."))
+                showCorrectMessageFlow.emit(Resource.Error("text maydoni to‘ldirilishi shart."))
             }
         }
     }
@@ -111,6 +106,7 @@ class EditorViewModelImpl @Inject constructor(
                     }
                     checkLoading.emit(Resource.Loading(false))
                     suggestions.emit(Resource.Success(it.data!!))
+                }.catch {
                 }.launchIn(viewModelScope)
             } else {
                 showMassageFlow.emit(Resource.Error("text maydoni to‘ldirilishi shart."))
@@ -118,4 +114,10 @@ class EditorViewModelImpl @Inject constructor(
         }
     }
 
+
+    override fun savePosition(box: EditText) {
+        val position: Int = box.length()
+        val etext: Editable? = box.text
+        Selection.setSelection(etext, position)
+    }
 }

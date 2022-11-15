@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import uz.uicgroup.data.remote.api.DictionaryApi
 import uz.uicgroup.data.remote.api.SpellingApi
 import uz.uicgroup.data.remote.api.TransApi
 import javax.inject.Singleton
@@ -20,4 +21,8 @@ object ApiModule {
     @[Provides Singleton]
     fun provideSpellingApi(retrofit: Retrofit): SpellingApi =
         retrofit.create(SpellingApi::class.java)
+
+    @[Provides Singleton]
+    fun provideDictionaryApi(retrofit: Retrofit): DictionaryApi =
+        retrofit.create(DictionaryApi::class.java)
 }

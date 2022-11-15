@@ -48,4 +48,6 @@ object NetWorkModule {
     @[Provides Singleton]
     fun getGson(): Gson = Gson()
 
+
+
 }

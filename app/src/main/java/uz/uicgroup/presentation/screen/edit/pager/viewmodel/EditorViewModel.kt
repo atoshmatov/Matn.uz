@@ -1,4 +1,4 @@
-package uz.uicgroup.presentation.viewModel
+package uz.uicgroup.presentation.screen.edit.pager.viewmodel
 
 import android.widget.EditText
 import androidx.lifecycle.LiveData
@@ -9,14 +9,15 @@ import uz.uicgroup.domain.model.SuggestionsData
 
 interface EditorViewModel {
     val words: Flow<Resource<String>>
+    val noConnectionFlow: Flow<Boolean>
     val showLoadingFlow: Flow<Resource<Boolean>>
+    val showCorrectMessageFlow:Flow<Resource<String>>
+    val errorFlow: Flow<Resource<String>>
+    val showMassageFlow: Flow<Resource<String>>
     val checkLoading: Flow<Resource<Boolean>>
     val corrects: Flow<Resource<CorrectData>>
     val suggestions:Flow<Resource<SuggestionsData>>
-    val noConnectionFlow: Flow<Boolean>
-    val showMassageFlow: Flow<Resource<String>>
-    val errorFlow: Flow<Resource<String>>
-    val buttonLive: LiveData<Resource<Boolean>>
+    val buttonLive: LiveData<Boolean>
 
     //method
     fun getLatin(text: String)

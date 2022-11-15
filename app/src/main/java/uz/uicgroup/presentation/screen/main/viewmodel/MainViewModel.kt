@@ -1,4 +1,4 @@
-package uz.uicgroup.presentation.viewModel
+package uz.uicgroup.presentation.screen.main.viewmodel
 
 import kotlinx.coroutines.flow.Flow
 

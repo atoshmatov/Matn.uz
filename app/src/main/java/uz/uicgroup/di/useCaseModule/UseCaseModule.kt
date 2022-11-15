@@ -4,8 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import uz.uicgroup.domain.use_case.DictionaryUseCase
 import uz.uicgroup.domain.use_case.SpellingUseCase
 import uz.uicgroup.domain.use_case.TransUseCase
+import uz.uicgroup.domain.use_case.impl.DictionaryUseCaseImpl
 import uz.uicgroup.domain.use_case.impl.SpellingUseCaseImpl
 import uz.uicgroup.domain.use_case.impl.TransUseCaseImpl
 
@@ -17,4 +19,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindsSpellingUseCase(impl: SpellingUseCaseImpl): SpellingUseCase
+
+    @Binds
+    fun bindsDictionaryUseCase(impl: DictionaryUseCaseImpl): DictionaryUseCase
 }

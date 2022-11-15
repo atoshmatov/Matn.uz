@@ -6,5 +6,5 @@ import uz.uicgroup.data.remote.response.AboutResponse
 
 interface AboutApi {
     @GET("/api/v1/collaborators")
-    fun getAboutList(): Response<AboutResponse>
+   suspend fun getAboutList(): Response<AboutResponse>
 }
