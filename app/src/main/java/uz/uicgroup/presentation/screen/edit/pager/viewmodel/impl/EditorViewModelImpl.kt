@@ -32,23 +32,26 @@ class EditorViewModelImpl @Inject constructor(
     override val checkLoading = eventValueFlow<Resource<Boolean>>()
     override val corrects = eventValueFlow<Resource<CorrectData>>()
     override val suggestions = eventValueFlow<Resource<SuggestionsData>>()
-    override val noConnectionFlow = eventValueFlow<Boolean>()
+    override val noConnectionFlow = MutableSharedFlow<Boolean>()
     override val showMassageFlow = eventValueFlow<Resource<String>>()
     override val errorFlow = eventValueFlow<Resource<String>>()
     override val buttonLive = MutableLiveData<Boolean>()
 
     override fun getLatin(text: String) {
         viewModelScope.launch {
+            if (!isConnected()) {
+                noConnectionFlow.emit(false)
+                return@launch
+            }
             if (text.isNotEmpty()) {
                 transUseCase.getLatin(text).onStart {
                     showLoadingFlow.emit(Resource.Loading(true))
                 }.onEach { texts ->
-                    if (!isConnected()) {
-                        noConnectionFlow.emit(false)
-                        return@onEach
-                    }
+                    noConnectionFlow.emit(true)
                     showLoadingFlow.emit(Resource.Loading(false))
                     words.emit(Resource.Success(texts.data.toString()))
+                }.catch {
+                    errorFlow.emit(Resource.Error(it.localizedMessage ?: ""))
                 }.launchIn(viewModelScope)
             } else {
                 showMassageFlow.emit(Resource.Error("text maydoni to‘ldirilishi shart."))
@@ -58,16 +61,19 @@ class EditorViewModelImpl @Inject constructor(
 
     override fun getCyrillic(text: String) {
         viewModelScope.launch {
+            if (!isConnected()) {
+                noConnectionFlow.emit(false)
+                return@launch
+            }
             if (text.isNotEmpty()) {
                 transUseCase.getCyrille(text).onStart {
                     showLoadingFlow.emit(Resource.Loading(true))
                 }.onEach {
-                    if (!isConnected()) {
-                        noConnectionFlow.emit(false)
-                        return@onEach
-                    }
+                    noConnectionFlow.emit(true)
                     showLoadingFlow.emit(Resource.Loading(false))
                     words.emit(Resource.Success(it.data.toString()))
+                }.catch {
+                    errorFlow.emit(Resource.Error(it.localizedMessage ?: ""))
                 }.launchIn(viewModelScope)
             } else {
                 showMassageFlow.emit(Resource.Error("text maydoni to‘ldirilishi shart."))
@@ -77,16 +83,19 @@ class EditorViewModelImpl @Inject constructor(
 
     override fun getCorrect(correctList: List<String>) {
         viewModelScope.launch {
+            if (!isConnected()) {
+                noConnectionFlow.emit(false)
+                return@launch
+            }
             if (correctList[0].isNotEmpty()) {
                 spellingUseCase.getCorrect(correctList).onStart {
                     checkLoading.emit(Resource.Loading(true))
                 }.onEach {
-                    if (!isConnected()) {
-                        noConnectionFlow.emit(false)
-                        return@onEach
-                    }
+                    noConnectionFlow.emit(true)
                     checkLoading.emit(Resource.Loading(false))
                     corrects.emit(Resource.Success(it.data!!))
+                }.catch {
+                    errorFlow.emit(Resource.Error(it.localizedMessage ?: ""))
                 }.launchIn(viewModelScope)
             } else {
                 showCorrectMessageFlow.emit(Resource.Error("text maydoni to‘ldirilishi shart."))
@@ -96,17 +105,19 @@ class EditorViewModelImpl @Inject constructor(
 
     override fun getSuggestions(suggestionsList: List<String>) {
         viewModelScope.launch {
+            if (!isConnected()) {
+                noConnectionFlow.emit(false)
+                return@launch
+            }
             if (suggestionsList.isNotEmpty()) {
                 spellingUseCase.getSuggestions(suggestionsList).onStart {
                     checkLoading.emit(Resource.Loading(true))
                 }.onEach {
-                    if (!isConnected()) {
-                        noConnectionFlow.emit(false)
-                        return@onEach
-                    }
+                    noConnectionFlow.emit(true)
                     checkLoading.emit(Resource.Loading(false))
                     suggestions.emit(Resource.Success(it.data!!))
                 }.catch {
+                    errorFlow.emit(Resource.Error(it.localizedMessage ?: ""))
                 }.launchIn(viewModelScope)
             } else {
                 showMassageFlow.emit(Resource.Error("text maydoni to‘ldirilishi shart."))

@@ -19,6 +19,7 @@ import uz.uicgroup.data.local.SharedPref
 import uz.uicgroup.databinding.ScreenAboutBinding
 import uz.uicgroup.presentation.screen.about.viewModel.AboutViewModel
 import uz.uicgroup.presentation.screen.about.viewModel.impl.AboutViewModelImpl
+import uz.uicgroup.utils.Open
 import uz.uicgroup.utils.extension.myApply
 
 
@@ -52,7 +53,7 @@ class AboutScreen : Fragment(R.layout.screen_about) {
 
     @SuppressLint("ResourceAsColor")
     private fun setImage(it: Boolean) {
-        if (it) {
+        if (!it) {
             binding.lightMode.setCardBackgroundColor(R.color.mode_bg_color)
             binding.darkMode.setCardBackgroundColor(Color.TRANSPARENT)
             binding.iconDark.setImageResource(R.drawable.ic_unchecked_image)
@@ -103,18 +104,10 @@ class AboutScreen : Fragment(R.layout.screen_about) {
 
     private fun setUir(uri: String, pack: String) {
         val installed = checkAppInstall(pack);
-        if (!installed) {
-            val open = Intent(Intent.ACTION_VIEW)
-            open.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            open.data = Uri.parse(uri)
-            requireContext().startActivity(open)
-        } else {
-            Toast.makeText(
-                requireContext(),
-                "Installed application first", Toast.LENGTH_LONG
-            ).show();
-        }
-
+        val open = Intent(Intent.ACTION_VIEW)
+        open.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        open.data = Uri.parse(uri)
+        requireContext().startActivity(open)
     }
 
     private fun checkAppInstall(uri: String): Boolean {
@@ -130,5 +123,4 @@ class AboutScreen : Fragment(R.layout.screen_about) {
     private fun observerFun() = with(viewModel) {
         nightModeLiveData.observe(viewLifecycleOwner, nightModeObserver)
     }
-
 }

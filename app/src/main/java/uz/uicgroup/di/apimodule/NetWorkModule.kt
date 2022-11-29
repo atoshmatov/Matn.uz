@@ -13,8 +13,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.uicgroup.BuildConfig.BASE_URL
 import uz.uicgroup.BuildConfig.Bearer
-import uz.uicgroup.data.remote.api.SpellingApi
-import uz.uicgroup.data.remote.api.TransApi
 import javax.inject.Singleton
 
 
@@ -47,7 +45,4 @@ object NetWorkModule {
 
     @[Provides Singleton]
     fun getGson(): Gson = Gson()
-
-
-
 }

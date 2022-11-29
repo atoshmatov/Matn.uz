@@ -50,45 +50,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
-    <!--<androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linearLayoutCompat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/appLogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/appLogo"
-        app:layout_constraintTop_toTopOf="@+id/appLogo">
-
-        <TextView
-            android:id="@+id/appNameTx"
-            android:layout_width="match_parent"
-            android:layout_height="31dp"
-            android:fontFamily="@font/rubik_bold"
-            android:gravity="center"
-            android:text="@string/sp_app_tx"
-            android:textColor="@color/white"
-            android:textFontWeight="700"
-            android:textSize="24sp"
-            tools:ignore="UnusedAttribute" />
-
-        <TextView
-            android:id="@+id/appDpTx"
-            android:layout_width="match_parent"
-            android:layout_height="14dp"
-            android:fontFamily="@font/rubik_light"
-            android:gravity="center"
-            android:letterSpacing="0.03"
-            android:text="@string/sp_description_tx"
-            android:textColor="@color/white"
-            android:textFontWeight="500"
-            android:textSize="11sp"
-            tools:ignore="UnusedAttribute" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>-->
-
     <TextView
         android:id="@+id/spTittle1"
         android:layout_width="wrap_content"

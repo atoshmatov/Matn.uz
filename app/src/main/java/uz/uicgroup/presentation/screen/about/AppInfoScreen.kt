@@ -14,6 +14,7 @@ import uz.uicgroup.databinding.ScreenAppinfoBinding
 import uz.uicgroup.presentation.screen.about.viewModel.AppInfoViewModel
 import uz.uicgroup.presentation.screen.about.viewModel.impl.AppInfoViewModelImpl
 import uz.uicgroup.presentation.screen.edit.adapter.PagerAdapter
+import uz.uicgroup.utils.Open
 import uz.uicgroup.utils.extension.myApply
 
 @AndroidEntryPoint

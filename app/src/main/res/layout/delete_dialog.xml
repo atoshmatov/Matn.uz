@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="40dp"
+    android:background="@color/bg_color"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/networkImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_info_app"
+            app:layout_constraintBottom_toTopOf="@id/networkText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/networkText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik"
+            android:text="Tasdiqlaysizmi?"
+            android:textColor="@color/text_color_3"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/networkText1"
+            app:layout_constraintEnd_toEndOf="@+id/networkImage"
+            app:layout_constraintStart_toStartOf="@+id/networkImage"
+            app:layout_constraintTop_toBottomOf="@id/networkImage" />
+
+        <TextView
+            android:id="@+id/networkText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="@string/delete_history_text"
+            android:textColor="@color/text_color"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/border"
+            app:layout_constraintEnd_toEndOf="@+id/networkText"
+            app:layout_constraintStart_toStartOf="@+id/networkText"
+            app:layout_constraintTop_toBottomOf="@id/networkText" />
+
+        <View
+            android:id="@+id/border"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D5D2D2"
+            app:layout_constraintBottom_toTopOf="@id/btnTryAgain1"
+            app:layout_constraintTop_toBottomOf="@id/networkText1" />
+
+        <TextView
+            android:id="@+id/btnTryAgain1"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/rubik"
+            android:foreground="?actionBarItemBackground"
+            android:gravity="center"
+            android:text="@string/bekor_qilish"
+            android:textColor="#007AFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnTryAgain2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/networkText1"
+            app:layout_constraintVertical_bias="0"
+            tools:ignore="UnusedAttribute" />
+
+        <View
+            android:id="@+id/border2"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="#D5D2D2"
+            app:layout_constraintBottom_toBottomOf="@+id/btnTryAgain2"
+            app:layout_constraintEnd_toEndOf="@+id/btnTryAgain1"
+            app:layout_constraintStart_toEndOf="@+id/btnTryAgain1"
+            app:layout_constraintTop_toTopOf="@+id/btnTryAgain2" />
+
+
+        <TextView
+            android:id="@+id/btnTryAgain2"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/rubik"
+            android:foreground="?actionBarItemBackground"
+            android:gravity="center"
+            android:text="@string/ha"
+            android:textColor="#007AFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnTryAgain1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnTryAgain1"
+            app:layout_constraintTop_toTopOf="@+id/btnTryAgain1"
+            app:layout_constraintVertical_bias="0"
+            tools:ignore="UnusedAttribute" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

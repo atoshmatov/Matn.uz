@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import uz.uicgroup.data.local.SharedPref
 import uz.uicgroup.presentation.screen.main.viewmodel.MainViewModel
 import uz.uicgroup.utils.Open
 import uz.uicgroup.utils.extension.eventFlow
@@ -13,7 +14,10 @@ import uz.uicgroup.utils.internetConnection.isConnected
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModelImpl @Inject constructor() : ViewModel(), MainViewModel {
+class MainViewModelImpl @Inject constructor(
+    private val sharedPref: SharedPref
+) : ViewModel(),
+    MainViewModel {
     override val showLoadingFlow = eventValueFlow<String>()
     override val notConnection = eventValueFlow<Boolean>()
     override val openNextScreenFLow = eventFlow()
@@ -22,21 +26,21 @@ class MainViewModelImpl @Inject constructor() : ViewModel(), MainViewModel {
 
     init {
         viewModelScope.launch {
-            delay(2000)
-            if (!Open.notInternet)
-                openNoErrorScreenFLow.emit(Unit)
+            if (sharedPref.stateBtn && isConnected()) {
+                delay(2000)
+                openNextScreenFLow.emit(Open.openScreen.value!!)
+            }
         }
     }
 
-
     override fun openEditorScreen() {
+        sharedPref.stateBtn = true
         viewModelScope.launch {
             if (!isConnected()) {
                 notConnection.emit(false)
                 return@launch
             }
-            if (Open.notInternet)
-                openNextScreenFLow.emit(Unit)
+            openNextScreenFLow.emit(Open.openScreen.value!!)
         }
     }
 }

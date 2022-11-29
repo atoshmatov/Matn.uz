@@ -12,11 +12,10 @@ data class WordDto(
     val word: String
 )
 
-fun WordDto.toWordsData(): WordData {
+fun WordDto?.toWordsData(): WordData {
     return WordData(
-        id = id,
-        word = word,
-        syllable = syllable,
-        meanings = meanings
+        id = this?.id ?: 0,
+        word = this?.word ?: "",
+        syllable = this?.syllable ?: ""
     )
 }

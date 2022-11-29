@@ -12,6 +12,7 @@ import uz.uicgroup.R
 import uz.uicgroup.databinding.ScreenUserPolicyBinding
 import uz.uicgroup.presentation.screen.about.user_policy.viewmodel.UserPolicyViewModel
 import uz.uicgroup.presentation.screen.about.user_policy.viewmodel.impl.UserPolicyViewModelImpl
+import uz.uicgroup.utils.Open
 import uz.uicgroup.utils.extension.myApply
 
 @AndroidEntryPoint

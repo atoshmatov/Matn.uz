@@ -23,11 +23,11 @@ class AboutViewModelImpl @Inject constructor(
     override fun setTheme(nightMode: Boolean) {
         if (nightMode) {
             goInLightMode()
-            sharedPref.theme = true
+            sharedPref.theme = false
             nightModeLiveData.value = sharedPref.theme
         } else {
             goInDarkMode()
-            sharedPref.theme = false
+            sharedPref.theme = true
             nightModeLiveData.value =  sharedPref.theme
         }
     }

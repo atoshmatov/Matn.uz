@@ -9,11 +9,24 @@
     android:foreground="?android:selectableItemBackground"
     tools:ignore="UnusedAttribute">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/historyImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_history_image"
+        app:layout_constraintBottom_toBottomOf="@+id/dictionaryText"
+        app:layout_constraintEnd_toStartOf="@+id/dictionaryText"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/dictionaryText" />
+
     <TextView
         android:id="@+id/dictionaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="10dp"
         android:ellipsize="end"
         android:fontFamily="@font/rubik"
         android:gravity="center|start"
@@ -26,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/historyImage"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText,UnusedAttribute" />
 

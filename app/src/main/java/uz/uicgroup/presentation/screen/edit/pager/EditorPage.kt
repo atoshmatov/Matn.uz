@@ -11,15 +11,21 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import uz.uicgroup.R
 import uz.uicgroup.databinding.PagerEditorBinding
+import uz.uicgroup.presentation.screen.edit.dialog.NetWorkDialog
 import uz.uicgroup.presentation.screen.edit.pager.viewmodel.EditorViewModel
 import uz.uicgroup.presentation.screen.edit.pager.viewmodel.impl.EditorViewModelImpl
 import uz.uicgroup.utils.extension.*
@@ -75,9 +81,9 @@ class EditorPage : Fragment(R.layout.pager_editor) {
         }
         checkButton.setOnClickListener {
             if (etMessageBox.values().isNotEmpty()) {
-                val charStr = etMessageBox.values().split(' ')
+                val charStr = listOf(*etMessageBox.values().split(' ').toTypedArray())
                 viewModel.getCorrect(charStr)
-            }else{
+            } else {
                 checkButton.showTooltipTop(
                     "text maydoni to‘ldirilishi shart."
                 )
@@ -88,35 +94,84 @@ class EditorPage : Fragment(R.layout.pager_editor) {
         }
     }
 
+    @SuppressLint("ResourceType")
     private fun onEachFlow() = with(viewBinding) {
-        viewModel.words.onEach {
-            etMessageBox.setText(it.data)
-            viewModel.savePosition(etMessageBox)
-        }.launchIn(lifecycleScope)
-        viewModel.showMassageFlow.onEach {
-            etMessageBox.showTooltipTop(
-                it.message.toString()
-            )
-        }.launchIn(lifecycleScope)
-        viewModel.showCorrectMessageFlow.onEach {
-            checkButton.showTooltipTop(
-                it.message.toString()
-            )
-        }.launchIn(lifecycleScope)
-        viewModel.errorFlow.onEach {
-            showToast(it.data.toString())
-        }.launchIn(lifecycleScope)
-        viewModel.corrects.onEach {
-            val charStr = etMessageBox.values().split(' ')
-            etMessageBox.values().paintResult(etMessageBox.values())
-            val responseCharts = it.data!!.data
-            val str = java.lang.StringBuilder("")
-            /* for (i in responseCharts.indices) {
-                 if (charStr[i] == responseCharts[i]) {
-                 }
-             }*/
-            etMessageBox.setText(etMessageBox.values().paintResult(etMessageBox.values()))
-        }.launchIn(lifecycleScope)
+        lifecycleScope.launch {
+            viewModel.words.collect {
+                etMessageBox.setText(it.data)
+                viewModel.savePosition(etMessageBox)
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.showMassageFlow.collect {
+                etMessageBox.showTooltipTop(
+                    it.message.toString()
+                )
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.showCorrectMessageFlow.collect {
+                checkButton.showTooltipTop(
+                    it.message.toString()
+                )
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.errorFlow.collect {
+                showToast(it.data.toString())
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.corrects.collect {
+                if (it.data!!.data.isEmpty()) {
+                    checkButton.showTooltipTop(
+                        "Hech qanday\n" +
+                                "xato topilmadi",
+                        R.color.editor_btn_check_color2
+                    )
+                }
+                else {
+                    checkButton.showTooltipTop(
+                        "${it.data.data.size} ta xato so’z\n" +
+                                "topildi",
+                        R.color.tool_tip_bg_danger_color,
+                        0.3f,
+                        R.color.tool_tip_danger_text_color
+                    )
+                }
+
+                val charStr = listOf(*etMessageBox.values().split(' ').toTypedArray())
+                etMessageBox.values().paintResult(etMessageBox.values())
+                val responseCharts = it.data.data
+                for (i in responseCharts.indices) {
+                    Timber.tag("UUU").d(responseCharts[i])
+                    for (j in charStr.indices) {
+                        if (charStr.size <= responseCharts.size) break
+                        if (responseCharts[i] == charStr[j]) {
+                            showToast(responseCharts[i])
+                            etMessageBox.setText(
+                                etMessageBox.values().paintResult(etMessageBox.values())
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.errorFlow.catch { error ->
+                showToast("${error.message}")
+            }.collect {
+                showToast("$it")
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.noConnectionFlow.collect {
+                if (!it) {
+                    val dialog = NetWorkDialog(false)
+                    dialog.show(childFragmentManager, "")
+                }
+            }
+        }
     }
 
     private fun textLength(box: EditText, view: TextView) {

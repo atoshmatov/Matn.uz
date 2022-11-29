@@ -9,7 +9,6 @@ import javax.inject.Singleton
 class SharedPref @Inject constructor(@ApplicationContext context: Context) {
     private val pref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
 
-    //language position
     var stateBtn: Boolean
         get() = pref.getBoolean("state", false)
         set(value) = pref.edit().putBoolean("state", value).apply()

@@ -14,4 +14,40 @@
         <item name="android:fontFamily">@font/rubik</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_item_style</item>
+    </style>
+
+
+    //dialog style
+
+    <style name="DialogStyle" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:radius">10dp</item>
+        <item name="backgroundTint">@color/about_bg_color_2</item>
+    </style>
+    <style name="DialogStyle2" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+        <item name="android:radius">10dp</item>
+        <item name="backgroundTint">@color/about_bg_color_2</item>
+    </style>
+
+    <style name="DialogTheme_transparent" parent="DialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@drawable/bottom_item_style</item>
+    </style>
+
+    <style name="DialogTheme_transparent2" parent="DialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@drawable/bottom_item_style</item>
+    </style>
+
+
 </resources>

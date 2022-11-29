@@ -14,8 +14,8 @@ interface DictionaryApi {
         @Query("search") search: String
     ): Response<List<DictionaryDto>>
 
-    @GET("/api/v1/words")
+    @GET("/api/v1/words/{id}")
     suspend fun getSearchWord(
         @Path("id") id: Int
-    ): Response<List<WordDto>>
+    ): Response<WordDto>
 }

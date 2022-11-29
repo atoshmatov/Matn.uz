@@ -4,7 +4,9 @@ import kotlinx.coroutines.flow.Flow
 import uz.uicgroup.data.common.Resource
 import uz.uicgroup.data.remote.response.DictionaryDto
 import uz.uicgroup.domain.model.DictionaryData
+import uz.uicgroup.domain.model.WordData
 
 interface DictionaryUseCase {
     fun getDicSearch(search: String): Flow<Resource<List<DictionaryData>>>
+    fun getWords(id: Int): Flow<Resource<WordData>>
 }

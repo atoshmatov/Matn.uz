@@ -14,7 +14,9 @@ import uz.uicgroup.databinding.ScreenEditorBinding
 import uz.uicgroup.presentation.screen.edit.adapter.PagerAdapter
 import uz.uicgroup.presentation.screen.edit.pager.viewmodel.EditorViewModel
 import uz.uicgroup.presentation.screen.edit.pager.viewmodel.impl.EditorViewModelImpl
+import uz.uicgroup.utils.Open
 import uz.uicgroup.utils.extension.hideKeyboard
+import uz.uicgroup.utils.extension.myApply
 
 @AndroidEntryPoint
 class EditScreen : Fragment(R.layout.screen_editor) {
@@ -22,7 +24,7 @@ class EditScreen : Fragment(R.layout.screen_editor) {
     private val viewModel: EditorViewModel by viewModels<EditorViewModelImpl>()
 
     @SuppressLint("ResourceAsColor")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(viewBinding) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = viewBinding.myApply {
         super.onViewCreated(view, savedInstanceState)
         val mainAdapter = PagerAdapter(childFragmentManager, lifecycle)
         viewPagerScreen.adapter = mainAdapter

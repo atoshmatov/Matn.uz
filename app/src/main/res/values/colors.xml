@@ -27,6 +27,7 @@
 
     //editor Screen color
     <color name="editor_btn_check_color">#26E188</color>
+    <color name="editor_btn_check_color2">#26E188</color>
     <color name="editor_btn_check_tx_color">#fff</color>
     <color name="tab_item_color">@color/white</color>
     <color name="tab_item_tx_color">@color/main_color</color>
@@ -48,6 +49,7 @@
 
     //dictionary screen color
     <color name="empty_list_color">#848489</color>
+    <color name="delete_bg_color">#FAFAFA</color>
 
     //no internet screen
     <color name="no_internet_tx2_color">#D7D9DD</color>
@@ -69,5 +71,6 @@
 
     //span bg color
     <color name="span_bg_color">#FDF2E0</color>
+    <color name="history_image_color">#808080</color>
 
 </resources>

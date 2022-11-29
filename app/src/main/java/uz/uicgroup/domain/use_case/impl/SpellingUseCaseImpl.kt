@@ -1,6 +1,7 @@
 package uz.uicgroup.domain.use_case.impl
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import uz.uicgroup.data.common.Resource
 import uz.uicgroup.domain.model.CorrectData
@@ -28,6 +29,8 @@ class SpellingUseCaseImpl @Inject constructor(
             }
         }
 
+    }.catch {
+        emit(Resource.Error(it.localizedMessage ?: ""))
     }
 
     override fun getSuggestions(correct: List<String>): Flow<Resource<SuggestionsData>> = flow {
@@ -43,13 +46,7 @@ class SpellingUseCaseImpl @Inject constructor(
                 emit(Resource.Error(response.message()))
             }
         }
+    }.catch {
+        emit(Resource.Error(it.localizedMessage ?: ""))
     }
 }
-
-/*
-private fun CorrectDto?.toCorrect(): CorrectDto {
-    return CorrectDto(
-        errors = this?.errors ?: false,
-        data = this?.data ?: emptyList()
-    )
-}*/

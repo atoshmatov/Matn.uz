@@ -2,7 +2,9 @@ package uz.uicgroup.domain.use_case.impl
 
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
 import timber.log.Timber
 import uz.uicgroup.data.common.ErrorMessage
 import uz.uicgroup.data.common.Resource
@@ -19,7 +21,7 @@ class TransUseCaseImpl @Inject constructor(
         when (response.code()) {
             200 -> {
                 emit(Resource.Loading())
-                emit(Resource.Success(response.body() ?: ""))
+                emit(Resource.Success(response.body().toString()))
             }
             400 -> {
                 emit(Resource.Error(response.message() ?: ""))
@@ -28,6 +30,8 @@ class TransUseCaseImpl @Inject constructor(
                 emit(Resource.Error(response.message() ?: ""))
             }
         }
+    }.catch {
+        emit(Resource.Error(it.localizedMessage ?: ""))
     }
 
     override fun getCyrille(text: String): Flow<Resource<String>> = flow {
@@ -35,7 +39,7 @@ class TransUseCaseImpl @Inject constructor(
         when (response.code()) {
             200 -> {
                 emit(Resource.Loading())
-                emit(Resource.Success(response.body() ?: ""))
+                emit(Resource.Success(response.body().toString()))
             }
             400 -> {
                 emit(Resource.Error(response.message() ?: ""))
@@ -44,5 +48,7 @@ class TransUseCaseImpl @Inject constructor(
                 emit(Resource.Error(response.message() ?: ""))
             }
         }
+    }.catch {
+        emit(Resource.Error(it.localizedMessage ?: ""))
     }
 }
