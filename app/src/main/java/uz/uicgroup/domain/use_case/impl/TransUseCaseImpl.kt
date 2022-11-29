@@ -1,23 +1,18 @@
 package uz.uicgroup.domain.use_case.impl
 
-import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import retrofit2.HttpException
-import timber.log.Timber
-import uz.uicgroup.data.common.ErrorMessage
-import uz.uicgroup.data.common.Resource
-import uz.uicgroup.data.remote.request.LatinRequest
-import uz.uicgroup.domain.repository.TransRepository
+import uz.uicgroup.utils.common.Resource
+import uz.uicgroup.domain.repository.trans.TranslationRepository
 import uz.uicgroup.domain.use_case.TransUseCase
 import javax.inject.Inject
 
 class TransUseCaseImpl @Inject constructor(
-    private val transRepository: TransRepository
+    private val transRepository: TranslationRepository
 ) : TransUseCase {
     override fun getLatin(text: String): Flow<Resource<String>> = flow {
-        val response = transRepository.transLatin(text)
+        val response = transRepository.translateToLatin(text)
         when (response.code()) {
             200 -> {
                 emit(Resource.Loading())
@@ -35,7 +30,7 @@ class TransUseCaseImpl @Inject constructor(
     }
 
     override fun getCyrille(text: String): Flow<Resource<String>> = flow {
-        val response = transRepository.transCyrillic(text)
+        val response = transRepository.translateToCyrillic(text)
         when (response.code()) {
             200 -> {
                 emit(Resource.Loading())

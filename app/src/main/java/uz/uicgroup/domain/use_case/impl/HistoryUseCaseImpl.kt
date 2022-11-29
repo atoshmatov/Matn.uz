@@ -1,19 +1,15 @@
 package uz.uicgroup.domain.use_case.impl
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import timber.log.Timber
-import uz.uicgroup.data.common.Resource
-import uz.uicgroup.data.local.WordEntity
+import uz.uicgroup.utils.common.Resource
 import uz.uicgroup.data.local.toDictionaryData
 import uz.uicgroup.data.local.toWordData
-import uz.uicgroup.domain.model.DictionaryData
-import uz.uicgroup.domain.model.WordData
-import uz.uicgroup.domain.model.toWordEntity
-import uz.uicgroup.domain.repository.HistoryRepository
-import uz.uicgroup.domain.repository.impl.HistoryRepositoryImpl
+import uz.uicgroup.domain.models.DictionaryData
+import uz.uicgroup.domain.models.WordData
+import uz.uicgroup.domain.models.toWordEntity
+import uz.uicgroup.domain.repository.history.HistoryRepository
 import uz.uicgroup.domain.use_case.HistoryUseCase
 import javax.inject.Inject
 
@@ -29,7 +25,7 @@ class HistoryUseCaseImpl
     }
 
     override fun getByIdWord(id: Int): Flow<Resource<WordData>> = flow {
-        emit(Resource.Success(history.getWords(id).toWordData()))
+        emit(Resource.Success(history.getWordsById(id).toWordData()))
     }
 
     override fun addHistory(latin: WordData): Flow<Resource<Unit>> = flow {

@@ -1,27 +1,18 @@
 package uz.uicgroup.presentation
 
-import android.content.Context
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import com.r0adkll.slidr.Slidr
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import uz.uicgroup.R
 import uz.uicgroup.data.local.SharedPref
-import uz.uicgroup.presentation.screen.edit.dialog.BottomDialog
-import uz.uicgroup.presentation.screen.edit.dialog.NetWorkDialog
+import uz.uicgroup.presentation.screens.edit.dialog.NetWorkDialog
 import uz.uicgroup.utils.ConnectivityReceiver
 import uz.uicgroup.utils.Open
 import uz.uicgroup.utils.Theme
-import uz.uicgroup.utils.extension.showToast
 import uz.uicgroup.utils.internetConnection.ConnectivityObserver
 import uz.uicgroup.utils.internetConnection.NetworkConnectivityObserver
 

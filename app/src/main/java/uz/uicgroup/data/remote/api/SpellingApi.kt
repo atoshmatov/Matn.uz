@@ -3,7 +3,7 @@ package uz.uicgroup.data.remote.api
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
-import uz.uicgroup.data.remote.request.TextList
+import uz.uicgroup.data.remote.models.TextList
 import uz.uicgroup.data.remote.response.CorrectDto
 import uz.uicgroup.data.remote.response.SuggestionsDto
 

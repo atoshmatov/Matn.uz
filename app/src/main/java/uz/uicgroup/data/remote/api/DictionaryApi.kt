@@ -4,8 +4,8 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import uz.uicgroup.data.remote.response.DictionaryDto
-import uz.uicgroup.data.remote.response.WordDto
+import uz.uicgroup.data.mapper.DictionaryDto
+import uz.uicgroup.data.mapper.WordDto
 
 interface DictionaryApi {
 

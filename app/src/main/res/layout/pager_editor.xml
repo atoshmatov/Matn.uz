@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.screen.edit.pager.EditorPage">
+    tools:context=".presentation.screens.edit.pager.EditorPage">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etMessageBox"

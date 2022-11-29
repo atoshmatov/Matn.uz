@@ -4,9 +4,9 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import uz.uicgroup.app.App
+import uz.uicgroup.app.MatnApp
 
-fun isConnected(): Boolean = App.instance.isAvailableNetwork()
+fun isConnected(): Boolean = MatnApp.instance.isAvailableNetwork()
 
 private fun Context.isAvailableNetwork(): Boolean {
     var result = false

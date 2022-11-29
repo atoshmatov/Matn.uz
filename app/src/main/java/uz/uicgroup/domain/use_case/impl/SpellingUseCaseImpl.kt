@@ -3,12 +3,12 @@ package uz.uicgroup.domain.use_case.impl
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import uz.uicgroup.data.common.Resource
-import uz.uicgroup.domain.model.CorrectData
-import uz.uicgroup.domain.model.SuggestionsData
+import uz.uicgroup.utils.common.Resource
+import uz.uicgroup.domain.models.CorrectData
+import uz.uicgroup.domain.models.SuggestionsData
 import uz.uicgroup.data.remote.response.toCorrect
 import uz.uicgroup.data.remote.response.toSuggestion
-import uz.uicgroup.domain.repository.SpellingRepository
+import uz.uicgroup.domain.repository.spelling.SpellingRepository
 import uz.uicgroup.domain.use_case.SpellingUseCase
 import javax.inject.Inject
 
@@ -16,7 +16,7 @@ class SpellingUseCaseImpl @Inject constructor(
     private val spellingRepository: SpellingRepository
 ) : SpellingUseCase {
     override fun getCorrect(correct: List<String>): Flow<Resource<CorrectData>> = flow {
-        val response = spellingRepository.getCorrectTextList(correct)
+        val response = spellingRepository.getCorrectTextS(correct)
         when (response.code()) {
             200 -> {
                 emit(Resource.Success(response.body().toCorrect()))

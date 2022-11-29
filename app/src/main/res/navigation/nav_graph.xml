@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/editorScreen"
-        android:name="uz.uicgroup.presentation.screen.edit.EditScreen"
+        android:name="uz.uicgroup.presentation.screens.edit.EditScreen"
         android:label="screen_editor"
         tools:layout="@layout/screen_editor">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/networkErrorScreen"
-        android:name="uz.uicgroup.presentation.screen.notConnection.NetworkErrorScreen"
+        android:name="uz.uicgroup.presentation.screens.notConnection.NetworkErrorScreen"
         android:label="screen_network_error"
         tools:layout="@layout/screen_network_error">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainScreen"
-        android:name="uz.uicgroup.presentation.screen.main.MainScreen"
+        android:name="uz.uicgroup.presentation.screens.main.MainScreen"
         android:label="screen_main"
         tools:layout="@layout/screen_main">
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutScreen"
-        android:name="uz.uicgroup.presentation.screen.about.AboutScreen"
+        android:name="uz.uicgroup.presentation.screens.about.AboutScreen"
         android:label="screen_about"
         tools:layout="@layout/screen_about">
         <action
@@ -80,19 +80,19 @@
     </fragment>
     <fragment
         android:id="@+id/appInfoScreen"
-        android:name="uz.uicgroup.presentation.screen.about.AppInfoScreen"
+        android:name="uz.uicgroup.presentation.screens.about.AppInfoScreen"
         android:label="screen_appinfo"
         tools:layout="@layout/screen_appinfo" >
     </fragment>
     <fragment
         android:id="@+id/policyScreen"
-        android:name="uz.uicgroup.presentation.screen.about.policy.PolicyScreen"
+        android:name="uz.uicgroup.presentation.screens.about.policy.PolicyScreen"
         android:label="screen_policy"
         tools:layout="@layout/screen_policy" >
     </fragment>
     <fragment
         android:id="@+id/userPolicyScreen"
-        android:name="uz.uicgroup.presentation.screen.about.user_policy.UserPolicyScreen"
+        android:name="uz.uicgroup.presentation.screens.about.user_policy.UserPolicyScreen"
         android:label="screen_user_policy"
         tools:layout="@layout/screen_user_policy">
     </fragment>

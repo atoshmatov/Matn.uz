@@ -1,8 +1,7 @@
 package uz.uicgroup.domain.use_case
 
 import kotlinx.coroutines.flow.Flow
-import uz.uicgroup.data.common.Resource
-import uz.uicgroup.data.remote.request.LatinRequest
+import uz.uicgroup.utils.common.Resource
 
 interface TransUseCase {
     fun getLatin(text: String): Flow<Resource<String>>

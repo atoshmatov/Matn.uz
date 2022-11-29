@@ -7,6 +7,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SharedPref @Inject constructor(@ApplicationContext context: Context) {
+
     private val pref = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE)
 
     var stateBtn: Boolean

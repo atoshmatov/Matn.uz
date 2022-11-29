@@ -3,8 +3,6 @@ package uz.uicgroup.data.local.dao
 import androidx.room.Dao
 import androidx.room.Query
 import uz.uicgroup.data.local.WordEntity
-import uz.uicgroup.di.databsemodule.TableName
-import uz.uicgroup.domain.model.WordData
 
 @Dao
 interface DictionaryDao : BaseDao<WordEntity> {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
-    tools:context=".presentation.screen.about.AboutScreen">
+    tools:context=".presentation.screens.about.AboutScreen">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/appBar"

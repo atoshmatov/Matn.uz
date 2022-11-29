@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.screen.about.pager.InfoPager">
+    tools:context=".presentation.screens.about.pager.InfoPager">
 
     <TextView
         android:layout_width="wrap_content"
