@@ -1,15 +1,14 @@
-package uz.uicgroup.domain.use_case.impl
+package uz.uicgroup.domain.use_case.spelling
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import uz.uicgroup.utils.common.Resource
+import uz.uicgroup.data.mapper.toCorrect
+import uz.uicgroup.data.mapper.toSuggestion
 import uz.uicgroup.domain.models.CorrectData
 import uz.uicgroup.domain.models.SuggestionsData
-import uz.uicgroup.data.remote.response.toCorrect
-import uz.uicgroup.data.remote.response.toSuggestion
 import uz.uicgroup.domain.repository.spelling.SpellingRepository
-import uz.uicgroup.domain.use_case.SpellingUseCase
+import uz.uicgroup.utils.common.Resource
 import javax.inject.Inject
 
 class SpellingUseCaseImpl @Inject constructor(

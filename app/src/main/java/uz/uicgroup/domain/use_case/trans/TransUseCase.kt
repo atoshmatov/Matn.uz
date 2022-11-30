@@ -1,4 +1,4 @@
-package uz.uicgroup.domain.use_case
+package uz.uicgroup.domain.use_case.trans
 
 import kotlinx.coroutines.flow.Flow
 import uz.uicgroup.utils.common.Resource

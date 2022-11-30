@@ -1,15 +1,14 @@
-package uz.uicgroup.domain.use_case.impl
+package uz.uicgroup.domain.use_case.dictionary
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import uz.uicgroup.data.mapper.toDicData
+import uz.uicgroup.data.mapper.toWordsData
 import uz.uicgroup.utils.common.Resource
-import uz.uicgroup.data.remote.response.toDicData
-import uz.uicgroup.data.remote.response.toWordsData
 import uz.uicgroup.domain.models.DictionaryData
 import uz.uicgroup.domain.models.WordData
 import uz.uicgroup.domain.repository.dictionary.DictionaryRepository
-import uz.uicgroup.domain.use_case.DictionaryUseCase
 import javax.inject.Inject
 
 class DictionaryUseCaseImpl @Inject constructor(
@@ -29,7 +28,7 @@ class DictionaryUseCaseImpl @Inject constructor(
             }
         }
     }.catch {
-        emit(Resource.Error(it.localizedMessage?:""))
+        emit(Resource.Error(it.localizedMessage ?: ""))
     }
 
     override fun getWords(id: Int): Flow<Resource<WordData>> = flow {
@@ -46,6 +45,6 @@ class DictionaryUseCaseImpl @Inject constructor(
             }
         }
     }.catch {
-        emit(Resource.Error(it.localizedMessage?:""))
+        emit(Resource.Error(it.localizedMessage ?: ""))
     }
 }

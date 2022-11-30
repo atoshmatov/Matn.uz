@@ -1,11 +1,10 @@
-package uz.uicgroup.domain.use_case.impl
+package uz.uicgroup.domain.use_case.trans
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import uz.uicgroup.utils.common.Resource
 import uz.uicgroup.domain.repository.trans.TranslationRepository
-import uz.uicgroup.domain.use_case.TransUseCase
 import javax.inject.Inject
 
 class TransUseCaseImpl @Inject constructor(

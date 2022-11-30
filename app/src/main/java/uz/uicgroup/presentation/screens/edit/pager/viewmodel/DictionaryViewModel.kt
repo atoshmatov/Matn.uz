@@ -16,7 +16,7 @@ interface DictionaryViewModel {
     val searchQueryFlow: Flow<String>
     val wordsFlow: SharedFlow<Resource<WordData>>
     val historyList: Flow<Resource<List<WordData>>>
-    var click: Boolean
+    var historyAndApiClickListener: Boolean
     val showImageEmptyFlow: Flow<Boolean>
 
 

@@ -2,7 +2,7 @@ package uz.uicgroup.presentation.screens.edit.viewModel.impl
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import uz.uicgroup.domain.use_case.TransUseCase
+import uz.uicgroup.domain.use_case.trans.TransUseCase
 import uz.uicgroup.presentation.screens.edit.viewModel.EditViewModel
 import javax.inject.Inject
 

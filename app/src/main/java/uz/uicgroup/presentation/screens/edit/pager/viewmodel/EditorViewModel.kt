@@ -22,7 +22,6 @@ interface EditorViewModel {
     //method
     fun getLatin(text: String)
     fun getCyrillic(text: String)
-    fun savePosition(box: EditText)
 
     //spelling
     fun getCorrect(correctList: List<String>)

@@ -1,9 +1,10 @@
-package uz.uicgroup.domain.use_case
+package uz.uicgroup.domain.use_case.history
 
-import uz.uicgroup.utils.common.Resource
-import uz.uicgroup.domain.models.WordData
+
 import  kotlinx.coroutines.flow.Flow
 import uz.uicgroup.domain.models.DictionaryData
+import uz.uicgroup.domain.models.WordData
+import uz.uicgroup.utils.common.Resource
 
 interface HistoryUseCase {
     fun getHistoryList(): Flow<Resource<List<DictionaryData>>>

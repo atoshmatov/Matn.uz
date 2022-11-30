@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.uicgroup.domain.models.DictionaryData
 import uz.uicgroup.domain.models.WordData
-import uz.uicgroup.domain.use_case.DictionaryUseCase
-import uz.uicgroup.domain.use_case.HistoryUseCase
+import uz.uicgroup.domain.use_case.dictionary.DictionaryUseCase
+import uz.uicgroup.domain.use_case.history.HistoryUseCase
 import uz.uicgroup.presentation.screens.edit.pager.viewmodel.DictionaryViewModel
 import uz.uicgroup.utils.common.Resource
 import uz.uicgroup.utils.extension.eventValueFlow
@@ -33,7 +33,7 @@ class DictionaryViewModelImpl
     override val searchQueryFlow = eventValueFlow<String>()
     override val wordsFlow = MutableSharedFlow<Resource<WordData>>()
     override val historyList = eventValueFlow<Resource<List<WordData>>>()
-    override var click: Boolean = false
+    override var historyAndApiClickListener: Boolean = false
     override val showImageEmptyFlow = eventValueFlow<Boolean>()
 
     override fun getSearchWord(search: String) {
@@ -73,7 +73,7 @@ class DictionaryViewModelImpl
     }
 
     override fun getHistory() {
-        click = true
+        historyAndApiClickListener = true
 
         history
             .getHistoryList()

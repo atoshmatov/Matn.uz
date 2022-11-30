@@ -10,11 +10,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import uz.uicgroup.utils.common.Resource
-import uz.uicgroup.data.local.SharedPref
 import uz.uicgroup.domain.models.CorrectData
 import uz.uicgroup.domain.models.SuggestionsData
-import uz.uicgroup.domain.use_case.SpellingUseCase
-import uz.uicgroup.domain.use_case.TransUseCase
+import uz.uicgroup.domain.use_case.spelling.SpellingUseCase
+import uz.uicgroup.domain.use_case.trans.TransUseCase
 import uz.uicgroup.presentation.screens.edit.pager.viewmodel.EditorViewModel
 import uz.uicgroup.utils.extension.eventValueFlow
 import uz.uicgroup.utils.internetConnection.isConnected
@@ -38,16 +37,10 @@ class EditorViewModelImpl @Inject constructor(
 
     override fun getLatin(text: String) {
         viewModelScope.launch {
-            if (!isConnected()) {
-                noConnectionFlow.emit(false)
-                return@launch
-            }
+            notConnected()
             if (text.isNotEmpty()) {
-                transUseCase.getLatin(text).onStart {
-                    showLoadingFlow.emit(Resource.Loading(true))
-                }.onEach { texts ->
+                transUseCase.getLatin(text).onEach { texts ->
                     noConnectionFlow.emit(true)
-                    showLoadingFlow.emit(Resource.Loading(false))
                     words.emit(Resource.Success(texts.data.toString()))
                 }.catch {
                     errorFlow.emit(Resource.Error(it.localizedMessage ?: ""))
@@ -60,16 +53,10 @@ class EditorViewModelImpl @Inject constructor(
 
     override fun getCyrillic(text: String) {
         viewModelScope.launch {
-            if (!isConnected()) {
-                noConnectionFlow.emit(false)
-                return@launch
-            }
+            notConnected()
             if (text.isNotEmpty()) {
-                transUseCase.getCyrille(text).onStart {
-                    showLoadingFlow.emit(Resource.Loading(true))
-                }.onEach {
+                transUseCase.getCyrille(text).onEach {
                     noConnectionFlow.emit(true)
-                    showLoadingFlow.emit(Resource.Loading(false))
                     words.emit(Resource.Success(it.data.toString()))
                 }.catch {
                     errorFlow.emit(Resource.Error(it.localizedMessage ?: ""))
@@ -82,16 +69,10 @@ class EditorViewModelImpl @Inject constructor(
 
     override fun getCorrect(correctList: List<String>) {
         viewModelScope.launch {
-            if (!isConnected()) {
-                noConnectionFlow.emit(false)
-                return@launch
-            }
-            if (correctList[0].isNotEmpty()) {
-                spellingUseCase.getCorrect(correctList).onStart {
-                    checkLoading.emit(Resource.Loading(true))
-                }.onEach {
+            notConnected()
+            if (correctList.isNotEmpty()) {
+                spellingUseCase.getCorrect(correctList).onEach {
                     noConnectionFlow.emit(true)
-                    checkLoading.emit(Resource.Loading(false))
                     corrects.emit(Resource.Success(it.data!!))
                 }.catch {
                     errorFlow.emit(Resource.Error(it.localizedMessage ?: ""))
@@ -104,16 +85,10 @@ class EditorViewModelImpl @Inject constructor(
 
     override fun getSuggestions(suggestionsList: List<String>) {
         viewModelScope.launch {
-            if (!isConnected()) {
-                noConnectionFlow.emit(false)
-                return@launch
-            }
+            notConnected()
             if (suggestionsList.isNotEmpty()) {
-                spellingUseCase.getSuggestions(suggestionsList).onStart {
-                    checkLoading.emit(Resource.Loading(true))
-                }.onEach {
+                spellingUseCase.getSuggestions(suggestionsList).onEach {
                     noConnectionFlow.emit(true)
-                    checkLoading.emit(Resource.Loading(false))
                     suggestions.emit(Resource.Success(it.data!!))
                 }.catch {
                     errorFlow.emit(Resource.Error(it.localizedMessage ?: ""))
@@ -124,11 +99,12 @@ class EditorViewModelImpl @Inject constructor(
         }
     }
 
-
-    // TODO: move to Fragment
-    override fun savePosition(box: EditText) {
-        val position: Int = box.length()
-        val etext: Editable? = box.text
-        Selection.setSelection(etext, position)
+    private fun notConnected() {
+        viewModelScope.launch {
+            if (!isConnected()) {
+                noConnectionFlow.emit(false)
+                return@launch
+            }
+        }
     }
 }

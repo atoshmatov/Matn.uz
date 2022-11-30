@@ -25,7 +25,9 @@ import uz.uicgroup.utils.extension.visible
 class MainScreen : Fragment(R.layout.screen_main) {
 
     lateinit var sharedPref: SharedPref
+
     private val viewBinding by viewBinding(ScreenMainBinding::bind)
+
     private val viewModel: MainViewModel by viewModels<MainViewModelImpl>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +37,7 @@ class MainScreen : Fragment(R.layout.screen_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = viewBinding.myApply {
         super.onViewCreated(view, savedInstanceState)
+
         sharedPref = SharedPref(requireContext())
 
         if (sharedPref.stateBtn) {
@@ -42,9 +45,11 @@ class MainScreen : Fragment(R.layout.screen_main) {
         } else {
             spStartBt.visible()
         }
+
         spStartBt.setOnClickListener {
             viewModel.openEditorScreen()
         }
+
         lifecycleScope.launch {
             viewModel.openNextScreenFLow.collect {
                 findNavController().navigate(R.id.action_mainScreen_to_editorScreen)

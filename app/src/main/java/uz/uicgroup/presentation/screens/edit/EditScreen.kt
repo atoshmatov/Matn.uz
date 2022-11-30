@@ -19,14 +19,18 @@ import uz.uicgroup.utils.extension.myApply
 
 @AndroidEntryPoint
 class EditScreen : Fragment(R.layout.screen_editor) {
+
     private val viewBinding by viewBinding(ScreenEditorBinding::bind)
+
     private val viewModel: EditorViewModel by viewModels<EditorViewModelImpl>()
 
-    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = viewBinding.myApply {
         super.onViewCreated(view, savedInstanceState)
+
         val mainAdapter = PagerAdapter(childFragmentManager, lifecycle)
+
         viewPagerScreen.adapter = mainAdapter
+
         TabLayoutMediator(tabLayout, viewPagerScreen) { tab, position ->
             when (position) {
                 0 -> {
@@ -36,7 +40,8 @@ class EditScreen : Fragment(R.layout.screen_editor) {
                     tab.setText(R.string.dictionary_tab_tx)
                 }
             }
-        }.attach()
+        }
+            .attach()
 
         appInfo.setOnClickListener {
             hideKeyboard()

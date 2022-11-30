@@ -4,14 +4,14 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import uz.uicgroup.domain.use_case.DictionaryUseCase
-import uz.uicgroup.domain.use_case.HistoryUseCase
-import uz.uicgroup.domain.use_case.SpellingUseCase
-import uz.uicgroup.domain.use_case.TransUseCase
-import uz.uicgroup.domain.use_case.impl.DictionaryUseCaseImpl
-import uz.uicgroup.domain.use_case.impl.HistoryUseCaseImpl
-import uz.uicgroup.domain.use_case.impl.SpellingUseCaseImpl
-import uz.uicgroup.domain.use_case.impl.TransUseCaseImpl
+import uz.uicgroup.domain.use_case.dictionary.DictionaryUseCase
+import uz.uicgroup.domain.use_case.history.HistoryUseCase
+import uz.uicgroup.domain.use_case.spelling.SpellingUseCase
+import uz.uicgroup.domain.use_case.trans.TransUseCase
+import uz.uicgroup.domain.use_case.dictionary.DictionaryUseCaseImpl
+import uz.uicgroup.domain.use_case.history.HistoryUseCaseImpl
+import uz.uicgroup.domain.use_case.spelling.SpellingUseCaseImpl
+import uz.uicgroup.domain.use_case.trans.TransUseCaseImpl
 
 @Module
 @InstallIn(ViewModelComponent::class)

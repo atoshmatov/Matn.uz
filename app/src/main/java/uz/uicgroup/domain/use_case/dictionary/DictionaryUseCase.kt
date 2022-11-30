@@ -1,12 +1,11 @@
-package uz.uicgroup.domain.use_case
+package uz.uicgroup.domain.use_case.dictionary
 
 import kotlinx.coroutines.flow.Flow
-import uz.uicgroup.utils.common.Resource
 import uz.uicgroup.domain.models.DictionaryData
 import uz.uicgroup.domain.models.WordData
+import uz.uicgroup.utils.common.Resource
 
 interface DictionaryUseCase {
-    // TODO: Change name
     fun getDicSearch(search: String): Flow<Resource<List<DictionaryData>>>
     fun getWords(id: Int): Flow<Resource<WordData>>
 }

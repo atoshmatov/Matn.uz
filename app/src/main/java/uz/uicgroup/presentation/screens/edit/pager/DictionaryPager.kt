@@ -7,11 +7,14 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import uz.uicgroup.R
 import uz.uicgroup.databinding.PagerDictionaryBinding
@@ -35,22 +38,15 @@ class DictionaryPager : Fragment(R.layout.pager_dictionary), SearchView.OnQueryT
         DictionaryAdapter(requireContext(), lifecycleScope)
     }
 
-    @SuppressLint("FragmentLiveDataObserve")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = binding.myApply {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
+
+        setUpUi()
+
         viewModel.getHistory()
 
-        listDic.adapter = adapter
-        listDic.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-
-        adapter.setOnItemClickListener {
-            hideKeyboard()
-            if (viewModel.click) viewModel.getById(it)
-            else viewModel.getWords(it)
-        }
-
         searchView.setOnQueryTextListener(this@DictionaryPager)
+
         searchView.setOnCloseListener {
             hideKeyboard()
             return@setOnCloseListener true
@@ -66,45 +62,64 @@ class DictionaryPager : Fragment(R.layout.pager_dictionary), SearchView.OnQueryT
         }
 
         lifecycleScope.launch {
-            viewModel.showLoadingFlow.collect { isLoading ->
-                historyText.isVisible = !isLoading
-                historyImage2.isVisible = !isLoading
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel
+                    .showLoadingFlow
+                    .collect { isLoading ->
+                        historyText.isVisible = !isLoading
+                        historyImage2.isVisible = !isLoading
+                    }
             }
         }
 
         lifecycleScope.launch {
-            viewModel.searchList.collect {
-                adapter.submitList(it.data)
-                adapter.click = viewModel.click
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel
+                    .searchList
+                    .collect {
+                        adapter.submitList(it.data)
+                        adapter.click = viewModel.historyAndApiClickListener
+                    }
             }
         }
 
         lifecycleScope.launch {
-            viewModel.searchQueryFlow.collect {
-                it.let { adapter.query = it }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel
+                    .searchQueryFlow
+                    .collect {
+                        it.let { adapter.query = it }
+                    }
             }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.wordsFlow
-                .flowWithLifecycle(lifecycle)
-                .collect {
-                    hideKeyboard()
-                    val dialog = BottomDialog(it.data!!)
-                    dialog.show(childFragmentManager, "")
-                    viewModel.addWordHistory(
-                        WordData(
-                            it.data.id, it.data.word, it.data.syllable
-                        )
-                    )
-                }
-        }
-
-        lifecycleScope.launch {
-            viewModel.showImageEmptyFlow.collect {
-                imageEmpty.isVisible = it
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel
+                    .wordsFlow
+                    .collect {
+                        hideKeyboard()
+                        val dialog = BottomDialog(it.data!!)
+                        dialog.show(childFragmentManager, "")
+                        viewModel
+                            .addWordHistory(
+                                WordData(
+                                    it.data.id, it.data.word, it.data.syllable
+                                )
+                            )
+                    }
             }
         }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.showImageEmptyFlow
+                    .collect {
+                        imageEmpty.isVisible = it
+                    }
+            }
+
+        }
+        return@with
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -119,12 +134,24 @@ class DictionaryPager : Fragment(R.layout.pager_dictionary), SearchView.OnQueryT
 
     private fun searchWord(text: String?) {
         if (text != null) {
-            viewModel.click = false
+            viewModel.historyAndApiClickListener = false
             viewModel.getSearchWord(text)
             viewModel.onSearch(text)
         }
         if (text!!.isEmpty()) {
             viewModel.getHistory()
+        }
+    }
+
+    private fun setUpUi() = binding.myApply {
+        listDic.adapter = adapter
+        listDic.layoutManager =
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+
+        adapter.setOnItemClickListener { itemById ->
+            hideKeyboard()
+            if (viewModel.historyAndApiClickListener) viewModel.getById(itemById)
+            else viewModel.getWords(itemById)
         }
     }
 }

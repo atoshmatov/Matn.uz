@@ -1,16 +1,15 @@
-package uz.uicgroup.domain.use_case.impl
+package uz.uicgroup.domain.use_case.history
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
-import uz.uicgroup.utils.common.Resource
-import uz.uicgroup.data.local.toDictionaryData
-import uz.uicgroup.data.local.toWordData
+import uz.uicgroup.data.mapper.toDictionaryData
+import uz.uicgroup.data.mapper.toWordData
+import uz.uicgroup.data.mapper.toWordEntity
 import uz.uicgroup.domain.models.DictionaryData
 import uz.uicgroup.domain.models.WordData
-import uz.uicgroup.domain.models.toWordEntity
 import uz.uicgroup.domain.repository.history.HistoryRepository
-import uz.uicgroup.domain.use_case.HistoryUseCase
+import uz.uicgroup.utils.common.Resource
 import javax.inject.Inject
 
 

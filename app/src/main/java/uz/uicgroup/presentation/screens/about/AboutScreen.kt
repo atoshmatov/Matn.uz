@@ -2,11 +2,11 @@ package uz.uicgroup.presentation.screens.about
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -54,17 +54,15 @@ class AboutScreen : Fragment(R.layout.screen_about) {
         observeNightMode()
     }
 
-    // TODO: Use ContextCompat API
-    @SuppressLint("ResourceAsColor")
     private fun setImage(isLight: Boolean) {
         binding.myApply {
-            if (isLight) {
-                lightMode.setCardBackgroundColor(R.color.mode_bg_color)
+            if (!isLight) {
+                lightMode.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.mode_bg_color))
                 darkMode.setCardBackgroundColor(Color.TRANSPARENT)
                 iconDark.setImageResource(R.drawable.ic_unchecked_image)
                 iconLight.setImageResource(R.drawable.ic_checked_image)
             } else {
-                darkMode.setCardBackgroundColor(R.color.mode_bg_color)
+                darkMode.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.mode_bg_color))
                 lightMode.setCardBackgroundColor(Color.TRANSPARENT)
                 iconLight.setImageResource(R.drawable.ic_unchecked_image)
                 iconDark.setImageResource(R.drawable.ic_checked_image)
@@ -98,44 +96,31 @@ class AboutScreen : Fragment(R.layout.screen_about) {
         }
 
         telegramImage.setOnClickListener {
-            setUir("https://t.me/matnuzofficial", "org.telegram.messenger")
+            setUir("https://t.me/matnuzofficial")
         }
 
         instagramImage.setOnClickListener {
-            setUir("https://www.instagram.com/matn.uz/?hl=en", "com.instagram.android")
+            setUir("https://www.instagram.com/matn.uz/?hl=en")
         }
 
         facebookImage.setOnClickListener {
-            setUir("https://www.facebook.com/matn.uz/", "com.facebook.katana")
+            setUir("https://www.facebook.com/matn.uz/")
         }
 
         twitterImage.setOnClickListener {
-            setUir("https://twitter.com/matnuz?lang=en", "com.twitter.android")
+            setUir("https://twitter.com/matnuz?lang=en")
         }
 
         siteLink.setOnClickListener {
-            setUir("https://matn.uz/", "")
+            setUir("https://matn.uz/")
         }
     }
 
-    // TODO: Remove package name, uri is enough
-    private fun setUir(uri: String, pack: String) {
-        val installed = checkAppInstall(pack);
+    private fun setUir(uri: String) {
         val open = Intent(Intent.ACTION_VIEW)
         open.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         open.data = Uri.parse(uri)
         requireContext().startActivity(open)
-    }
-
-    private fun checkAppInstall(uri: String): Boolean {
-        val pm: PackageManager = requireContext().packageManager
-        return try {
-            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES)
-            true
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-            false
-        }
     }
 
     private fun observeNightMode() {

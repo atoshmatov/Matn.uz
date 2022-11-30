@@ -44,13 +44,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
             connectivityObserver.observer().collect {
                 when (it) {
                     ConnectivityObserver.Status.UnAvailable -> {
-                        showDialog(true)
+                        showDialog()
                     }
                     ConnectivityObserver.Status.Lost -> {
-                        showDialog(true)
+                        showDialog()
                     }
                     ConnectivityObserver.Status.Losing -> {
-                        showDialog(true)
+                        showDialog()
                     }
                     else -> {
 
@@ -70,8 +70,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main),
         ConnectivityReceiver.connectivityReceiverListener = this
     }
 
-    private fun showDialog(isNetwork: Boolean) {
-        val dialog = NetWorkDialog(isNetwork)
+    private fun showDialog() {
+        val dialog = NetWorkDialog()
         dialog.show(supportFragmentManager, "")
     }
 }

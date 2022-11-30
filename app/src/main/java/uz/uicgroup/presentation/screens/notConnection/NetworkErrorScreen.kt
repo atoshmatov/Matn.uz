@@ -21,17 +21,20 @@ class NetworkErrorScreen : Fragment(R.layout.screen_network_error) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.spStartBt.setOnClickListener {
-            if (isConnected()){
+            if (isConnected()) {
                 findNavController().navigate(R.id.action_networkErrorScreen_to_editorScreen)
-            }else{
-                showDialog(true)
+            } else {
+                showDialog()
             }
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         Open.openScreen.observe(this@NetworkErrorScreen, openScreenObserver)
     }
 
@@ -39,8 +42,8 @@ class NetworkErrorScreen : Fragment(R.layout.screen_network_error) {
         findNavController().navigate(R.id.action_networkErrorScreen_to_editorScreen)
     }
 
-    private fun showDialog(isNetwork: Boolean) {
-        val dialog = NetWorkDialog(isNetwork)
+    private fun showDialog() {
+        val dialog = NetWorkDialog()
         dialog.show(childFragmentManager, "")
     }
 }
