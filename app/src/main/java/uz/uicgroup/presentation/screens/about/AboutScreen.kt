@@ -1,6 +1,5 @@
 package uz.uicgroup.presentation.screens.about
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -14,17 +13,14 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.uicgroup.R
-import uz.uicgroup.data.local.SharedPref
 import uz.uicgroup.databinding.ScreenAboutBinding
 import uz.uicgroup.presentation.screens.about.viewModel.AboutViewModel
 import uz.uicgroup.presentation.screens.about.viewModel.impl.AboutViewModelImpl
+import uz.uicgroup.utils.extension.collectLatestLifecycleFlow
 import uz.uicgroup.utils.extension.myApply
 
 @AndroidEntryPoint
 class AboutScreen : Fragment(R.layout.screen_about) {
-
-    // TODO: move to data
-    private var sharedPref: SharedPref? = null
 
     private val binding by viewBinding(ScreenAboutBinding::bind)
 
@@ -44,25 +40,39 @@ class AboutScreen : Fragment(R.layout.screen_about) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        sharedPref = SharedPref(requireContext())
-        setImage(sharedPref?.theme ?: false)
 
         super.onViewCreated(view, savedInstanceState)
 
         setupClickListeners()
         //observer
         observeNightMode()
+
+        viewModel.getSharedPrefThemeValue()
+
+        collectLatestLifecycleFlow(viewModel.sharedPrefValue) { isLight ->
+            setImage(isLight)
+        }
     }
 
     private fun setImage(isLight: Boolean) {
         binding.myApply {
             if (!isLight) {
-                lightMode.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.mode_bg_color))
+                lightMode.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.mode_bg_color
+                    )
+                )
                 darkMode.setCardBackgroundColor(Color.TRANSPARENT)
                 iconDark.setImageResource(R.drawable.ic_unchecked_image)
                 iconLight.setImageResource(R.drawable.ic_checked_image)
             } else {
-                darkMode.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.mode_bg_color))
+                darkMode.setCardBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.mode_bg_color
+                    )
+                )
                 lightMode.setCardBackgroundColor(Color.TRANSPARENT)
                 iconLight.setImageResource(R.drawable.ic_unchecked_image)
                 iconDark.setImageResource(R.drawable.ic_checked_image)

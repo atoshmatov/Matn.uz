@@ -1,4 +1,4 @@
-package uz.uicgroup.presentation.screens.about.viewModel
+package uz.uicgroup.presentation.screens.about.appinfo.viewmodel
 
 import androidx.lifecycle.LiveData
 

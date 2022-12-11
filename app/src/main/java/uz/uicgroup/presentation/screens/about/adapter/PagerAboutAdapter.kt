@@ -1,4 +1,4 @@
-package uz.uicgroup.presentation.screens.about
+package uz.uicgroup.presentation.screens.about.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

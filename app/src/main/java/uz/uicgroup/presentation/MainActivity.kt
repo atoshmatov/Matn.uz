@@ -19,7 +19,9 @@ import uz.uicgroup.utils.internetConnection.NetworkConnectivityObserver
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main),
     ConnectivityReceiver.ConnectivityReceiverListener {
+
     private var shared: SharedPref? = null
+
     lateinit var connectivityObserver: ConnectivityObserver
 
     override fun onNetworkConnectionChanged(isConnected: Boolean) {

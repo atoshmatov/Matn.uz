@@ -1,4 +1,4 @@
-package uz.uicgroup.presentation.screens.about
+package uz.uicgroup.presentation.screens.about.appinfo
 
 import android.os.Bundle
 import android.view.View
@@ -11,8 +11,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import uz.uicgroup.R
 import uz.uicgroup.databinding.ScreenAppinfoBinding
-import uz.uicgroup.presentation.screens.about.viewModel.AppInfoViewModel
-import uz.uicgroup.presentation.screens.about.viewModel.impl.AppInfoViewModelImpl
+import uz.uicgroup.presentation.screens.about.adapter.PagerAboutAdapter
+import uz.uicgroup.presentation.screens.about.appinfo.viewmodel.AppInfoViewModel
+import uz.uicgroup.presentation.screens.about.appinfo.viewmodel.AppInfoViewModelImpl
 import uz.uicgroup.utils.extension.myApply
 
 @AndroidEntryPoint

@@ -2,11 +2,14 @@ package uz.uicgroup.presentation.screens.about.viewModel.impl
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import uz.uicgroup.data.local.SharedPref
 import uz.uicgroup.presentation.screens.about.viewModel.AboutViewModel
 import uz.uicgroup.utils.Theme.goInDarkMode
 import uz.uicgroup.utils.Theme.goInLightMode
+import uz.uicgroup.utils.extension.eventValueFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,6 +18,7 @@ class AboutViewModelImpl @Inject constructor(
 ) : ViewModel(), AboutViewModel {
     override val backScreenLiveData = MutableLiveData<Unit>()
     override val nightModeLiveData = MutableLiveData<Boolean>()
+    override val sharedPrefValue = eventValueFlow<Boolean>()
 
     override fun backScreen() {
         backScreenLiveData.value = Unit
@@ -28,7 +32,13 @@ class AboutViewModelImpl @Inject constructor(
         } else {
             goInDarkMode()
             sharedPref.theme = true
-            nightModeLiveData.value =  sharedPref.theme
+            nightModeLiveData.value = sharedPref.theme
+        }
+    }
+
+    override fun getSharedPrefThemeValue() {
+        viewModelScope.launch {
+            sharedPrefValue.emit(sharedPref.theme)
         }
     }
 }

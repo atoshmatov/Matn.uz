@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/appInfoScreen"
-        android:name="uz.uicgroup.presentation.screens.about.AppInfoScreen"
+        android:name="uz.uicgroup.presentation.screens.about.appinfo.AppInfoScreen"
         android:label="screen_appinfo"
         tools:layout="@layout/screen_appinfo" >
     </fragment>
